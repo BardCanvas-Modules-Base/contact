@@ -92,6 +92,7 @@
         <invalid_mail>Please provide a valid email address.</invalid_mail>
         <invalid_captcha>Invalid captcha response. Please type the captcha code as it shows.</invalid_captcha>
         <sent_ok>Message has been successfully sent. The page will now reload.</sent_ok>
+        <user_cannot_be_emailed>Sorry, but this user doesn't accept emails.</user_cannot_be_emailed>
     </messages>
     
 </language>

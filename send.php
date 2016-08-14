@@ -46,6 +46,9 @@ if( ! empty($_POST["target"]) )
     if( $account->id_account == $target->id_account )
         die( $current_module->language->messages->self_messages_not_allowed );
     
+    if( $target->get_engine_pref("@contact:disable_user_emails", "false") == "true" )
+        die( $current_module->language->messages->user_cannot_be_emailed );
+    
     $recipients = array($target->display_name => $target->email);
     if( ! empty($target->alt_email) ) $recipients["{$target->display_name} (2)"] = $target->alt_email;
 }

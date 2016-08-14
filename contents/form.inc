@@ -31,7 +31,7 @@ $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET[
     <? return; ?>
 <? endif; ?>
 
-<? if( $settings->get("engine.webmaster_address") == "" ): ?>
+<? if( empty($_GET["target"]) && $settings->get("engine.webmaster_address") == "" ): ?>
     <div class="framed_content state_ko">
         <span class="fa fa-warning"></span>
         <?= $language->errors->webmaster_address_empty ?>
@@ -43,6 +43,14 @@ $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET[
     <div class="framed_content state_ko">
         <span class="fa fa-warning"></span>
         <?= $current_module->language->messages->invalid_target ?>
+    </div>
+    <? return; ?>
+<? endif; ?>
+
+<? if( ! is_null($target) && $target->get_engine_pref("@contact:disable_user_emails", "false") == "true" ): ?>
+    <div class="framed_content state_ko">
+        <span class="fa fa-warning"></span>
+        <?= $current_module->language->messages->user_cannot_be_emailed ?>
     </div>
     <? return; ?>
 <? endif; ?>
