@@ -14,6 +14,7 @@
  */
 
 use hng2_base\accounts_repository;
+use hng2_base\config;
 
 $sender_name  = $account->_exists ? htmlspecialchars($account->display_name) : "";
 $sender_email = $account->_exists ? $account->email                          : "";
@@ -47,7 +48,9 @@ $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET[
     <? return; ?>
 <? endif; ?>
 
-<? if( ! is_null($target) && $target->get_engine_pref("@contact:disable_user_emails", "false") == "true" ): ?>
+<? if( ! is_null($target)
+       && $target->get_engine_pref("@contact:disable_user_emails", "false") == "true"
+       && $account->level < config::MODERATOR_USER_LEVEL ): ?>
     <div class="framed_content state_ko">
         <span class="fa fa-warning"></span>
         <?= $current_module->language->messages->user_cannot_be_emailed ?>

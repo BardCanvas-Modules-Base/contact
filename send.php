@@ -8,6 +8,7 @@
  */
 
 use hng2_base\accounts_repository;
+use hng2_base\config;
 
 include "../config.php";
 include "../includes/bootstrap.inc";
@@ -46,7 +47,7 @@ if( ! empty($_POST["target"]) )
     if( $account->id_account == $target->id_account )
         die( $current_module->language->messages->self_messages_not_allowed );
     
-    if( $target->get_engine_pref("@contact:disable_user_emails", "false") == "true" )
+    if( $target->get_engine_pref("@contact:disable_user_emails", "false") == "true" && $account->level < config::MODERATOR_USER_LEVEL )
         die( $current_module->language->messages->user_cannot_be_emailed );
     
     $recipients = array($target->display_name => $target->email);
