@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language>
+    
+    <!-- #################################### -->
+    <!-- Settings module language definitions -->
+    <!-- #################################### -->
+    
+    <display_name>Contact form</display_name>
+    <icon>fa-envelope-o</icon>
+    <description>
+        Contact form for the website and its users
+    </description>
+    
+    <menu_caption>Contact</menu_caption>
+
+    <settings_data>
+        <title>Contact form</title>
+        <specs key="hide_on_main_menu">
+            <title>Hide on main menu?</title>
+            <description><![CDATA[
+                If selected, the link to the contact form will be hidden on the main menu.
+            ]]></description>
+            <type>yes/no</type>
+        </specs>
+    </settings_data>
+    
+    <title>
+        <general>Send email to {$site_name}'s staff</general>
+        <targeted>Send email to {$site_name} user</targeted>
+    </title>
+    
+    <fields>
+        <target>Target:</target>
+        <name>Your name:</name>
+        <email>
+            <caption>Your email:</caption>
+            <info>
+                <general><![CDATA[
+                    Please verify that your email is correct before submitting the form,
+                    or you will never receive a reply from us.
+                ]]></general>
+                <targeted><![CDATA[
+                    <b>Warning: your email will be exposed to the user!</b>
+                    Please verify that your email is correct before submitting the form,
+                    or you may never receive a reply.
+                ]]></targeted>
+            </info>
+        </email>
+        <subject>Type a subject for your message</subject>
+        <content>Type the contents of your message</content>
+    </fields>
+    
+    <body><![CDATA[
+        <p>
+            Greetings, {$recipient_name}!
+        <p>
+        
+        <p>
+            <a href="mailto:{$sender_email}">{$sender_name}</a> has sent you an email
+            using {$website_name}'s contact form:
+        <p>
+        
+        <blockquote style="padding: 10px; background-color: whitesmoke; border-left: 5px solid gray;">
+            {$body}
+        </blockquote>
+        
+        <p>
+            Feel free to reply as you usually do with your emails if you wish to directly
+            reply to {$recipient_email}.
+        </p>
+        
+        <p>
+            Regards,<br>
+            {$mailer_name} from {$website_name}.
+        </p>
+        
+        <hr>
+        <p>
+            Sent date: {$date}<br>
+            Origin host: {$origin_host}<br>
+            Origin location: {$origin_location}<br>
+        </p>
+    ]]></body>
+    
+    <messages>
+        <invalid_target>Sorry, but the target account is either invalid or it doesn't exist in the database.</invalid_target>
+        <empty_subject>Please type a subject for your message.</empty_subject>
+        <self_messages_not_allowed>Thou cannot send emails to thyself.</self_messages_not_allowed>
+        <content>You should specify some contents for your message.</content>
+        <empty_name>Please type your name.</empty_name>
+        <empty_email>Please type your email and make sure you can receive messages there.</empty_email>
+        <invalid_mail>Please provide a valid email address.</invalid_mail>
+        <invalid_captcha>Invalid captcha response. Please type the captcha code as it shows.</invalid_captcha>
+        <sent_ok>Message has been successfully sent. The page will now reload.</sent_ok>
+    </messages>
+    
+</language>
