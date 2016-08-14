@@ -49,7 +49,7 @@ $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET[
 <? endif; ?>
 
 <? if( ! is_null($target)
-       && $target->get_engine_pref("@contact:disable_user_emails", "false") == "true"
+       && $target->get_engine_pref("@contact:allow_emails") == "false"
        && $account->level < config::MODERATOR_USER_LEVEL ): ?>
     <div class="framed_content state_ko">
         <span class="fa fa-warning"></span>

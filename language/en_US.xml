@@ -24,6 +24,19 @@
         </specs>
     </settings_data>
     
+    <engine_prefs>
+        <title>Contact preferences</title>
+        <specs key="allow_emails" selector_default="true">
+            <title>Allow everyone to email me</title>
+            <description><![CDATA[
+                By default, everyone can send emails to our users.
+                If you don't want to receive emails from everyone (except mods/admins),
+                turn this setting off.
+            ]]></description>
+            <type>boolean</type>
+        </specs>
+    </engine_prefs>
+    
     <title>
         <general>Send email to {$site_name}'s staff</general>
         <targeted>Send email to {$site_name} user</targeted>
