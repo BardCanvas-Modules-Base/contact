@@ -12,15 +12,14 @@
         <disable>true</disable>
     </working_flags>
     
-    <!--
     <php_includes>
-        <bootstrap></bootstrap>
+        <!--<bootstrap></bootstrap>-->
+        <notifications_getter>extenders/notifications_getter_hook.inc</notifications_getter>
     </php_includes>
-    -->
     
     <template_includes>
         <!--<pre_rendering></pre_rendering>-->
-        <!--<html_head></html_head>-->
+        <html_head>html_head.inc</html_head>
         <!--<pre_header></pre_header>-->
         <!--<header_top></header_top>-->
         <header_menu>header_buttons.inc</header_menu>

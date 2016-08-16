@@ -60,7 +60,7 @@ $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET[
 
 <div id="contact_form_target" style="display: none;"></div>
 
-<form name="contact_form" id="contact_form" method="post" action="<?= $config->full_root_path ?>/contact/send.php">
+<form name="contact_form" id="contact_form" method="post" action="<?= $config->full_root_path ?>/contact/send_email.php">
     
     <input type="hidden" name="action" value="send">
     
@@ -128,7 +128,7 @@ $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET[
     <p>
         <button type="submit">
             <?= $language->submit ?>
-            <span class="fa fa-paper-plane"></span>
+            <span class="fa fa-play"></span>
         </button>
     </p>
     

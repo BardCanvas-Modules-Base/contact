@@ -13,6 +13,9 @@
     
     <menu_caption>Contact</menu_caption>
 
+    <pms_page_title>Your Private Messages</pms_page_title>
+    <read_pms>Click here to read your Private Messages</read_pms>
+    
     <settings_data>
         <title>Contact form</title>
         <specs key="hide_on_main_menu">
@@ -95,6 +98,12 @@
         </p>
     ]]></body>
     
+    <send_pm_form>
+        <content>
+            <placeholder>Please type your message. HTML code will be turned to text.</placeholder>
+        </content>
+    </send_pm_form>
+    
     <messages>
         <invalid_target>Sorry, but the target account is either invalid or it doesn't exist in the database.</invalid_target>
         <empty_subject>Please type a subject for your message.</empty_subject>
@@ -106,6 +115,12 @@
         <invalid_captcha>Invalid captcha response. Please type the captcha code as it shows.</invalid_captcha>
         <sent_ok>Message has been successfully sent. The page will now reload.</sent_ok>
         <user_cannot_be_emailed>Sorry, but this user doesn't accept emails.</user_cannot_be_emailed>
+        <pm_sent_ok>Private message sent to {$recipient}.</pm_sent_ok>
+        <received_pm><![CDATA[
+            You received a Private Message from {$sender}!<br>
+            <a href='{$link}'>Click here to check it.</a>
+        ]]></received_pm>
+        <no_conversations>You don't have any private conversations registered.</no_conversations>
     </messages>
     
 </language>

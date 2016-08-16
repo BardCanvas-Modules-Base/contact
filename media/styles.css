@@ -1,0 +1,26 @@
+
+#pms_viewer .conversations {
+    float: left;
+    width: 25%;
+    overflow: hidden;
+    padding-right: 9px;
+}
+
+#pms_viewer .conversation_item {
+    margin: 0;
+    padding: 5px;
+    border-top: 1px solid silver;
+    cursor: pointer;
+}
+
+/* Note: colors taken from the default styles! These must be ported to the template styles! */
+#pms_viewer .conversation_item:first-child { border-top: none; }
+#pms_viewer .conversation_item:hover       { background-color: #42A0FF; color: white;}
+#pms_viewer .conversation_item.selected    { background-color: #BBDDFF; color: black; cursor: auto; }
+
+#pms_viewer .messages {
+    float: left;
+    width: 75%;
+    padding-left: 9px;
+    border-left: 2px solid silver;
+}
