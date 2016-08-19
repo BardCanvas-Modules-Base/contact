@@ -6,6 +6,7 @@ use hng2_repository\abstract_record;
 class pm_record extends abstract_record
 {
     public $id_pm;
+    public $id_owner;
     public $id_sender;
     public $id_recipient;
     public $sent_date;

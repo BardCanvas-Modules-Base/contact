@@ -10,6 +10,29 @@ class pms_repository extends abstract_repository
     protected $key_column_name = "id_pm";
     
     /**
+     * @param $id
+     *
+     * @return pm_record|null
+     */
+    public function get($id)
+    {
+        return parent::get($id);
+    }
+    
+    /**
+     * @param array  $where
+     * @param int    $limit
+     * @param int    $offset
+     * @param string $order
+     *
+     * @return pm_record[]
+     */
+    public function find($where, $limit, $offset, $order)
+    {
+        return parent::find($where, $limit, $offset, $order);
+    }
+    
+    /**
      * @param pm_record $record
      *
      * @return int
@@ -25,15 +48,14 @@ class pms_repository extends abstract_repository
         $affected_rows = $database->exec("
             insert ignore into pms set
             `id_pm`              = '{$obj->id_pm       }',
+            `id_owner`           = '{$obj->id_owner    }',
             `id_sender`          = '{$obj->id_sender   }',
             `id_recipient`       = '{$obj->id_recipient}',
             `sent_date`          = '{$obj->sent_date   }',
+            `opened_date`        = '{$obj->opened_date }',
             `contents`           = '{$obj->contents    }'
         ");
         $this->last_query = $database->get_last_query();
-        
-        $this->ping_conversation($record->id_sender,    $record->id_recipient, $record->sent_date);
-        $this->ping_conversation($record->id_recipient, $record->id_sender,    $record->sent_date);
         
         return $affected_rows;
     }
@@ -62,16 +84,31 @@ class pms_repository extends abstract_repository
     public function send($id_recipient, $content)
     {
         global $account;
-    
+        
         $record = new pm_record(array(
+            "id_owner"     => $account->id_account,
             "id_sender"    => $account->id_account,
             "id_recipient" => $id_recipient,
             "sent_date"    => date("Y-m-d H:i:s"),
+            "opened_date"  => date("Y-m-d H:i:s"),
             "contents"     => $content,
         ));
         $record->set_new_id();
+        $this->save($record);
         
-        return $this->save($record);
+        $record = new pm_record(array(
+            "id_owner"     => $id_recipient,
+            "id_sender"    => $account->id_account,
+            "id_recipient" => $id_recipient,
+            "sent_date"    => date("Y-m-d H:i:s"),
+            "opened_date"  => "0000-00-00 00:00:00",
+            "contents"     => $content,
+        ));
+        $record->set_new_id();
+        $this->save($record);
+        
+        $this->ping_conversation($record->id_sender,    $record->id_recipient, $record->sent_date);
+        $this->ping_conversation($record->id_recipient, $record->id_sender,    $record->sent_date);
     }
     
     public function ping_conversation($id_owner, $id_other, $last_event_date)
@@ -121,5 +158,30 @@ class pms_repository extends abstract_repository
             $return[] = new conversation_record($row);
         
         return $return;
+    }
+    
+    /**
+     * @param string|array $id_or_ids
+     *
+     * @return int
+     */
+    public function mark_as_read($id_or_ids)
+    {
+        global $database;
+        
+        if( empty($id_or_ids) ) return 0;
+        
+        if( ! is_array($id_or_ids) ) $id_or_ids = array($id_or_ids);
+        
+        foreach($id_or_ids as &$id) $id = "'$id'";
+        $id_or_ids = implode(", ", $id_or_ids);
+        
+        $date  = date("Y-m-d H:i:s");
+        $query = "update pms set opened_date = '$date'
+                  where opened_date = '0000-00-00 00:00:00'
+                  and id_pm in ($id_or_ids)";
+        $this->last_query = $query;
+        
+        return $database->exec($query);
     }
 }

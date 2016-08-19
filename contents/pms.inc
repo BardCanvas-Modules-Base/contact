@@ -23,31 +23,93 @@ foreach($conversations as $conversation) $author_ids[] = $conversation->id_other
 $authors = $accounts_repository->get_multiple($author_ids);
 ?>
 
-<h1 class="clearfix">
-    <button class="pull-right" onclick="location.href = '<?= $_SERVER["PHP_SELF"] ?>?wasuuup=<?= md5(mt_rand(1, 65535)) ?>'">
-        <span class="fa fa-refresh"></span>
-        <?= $language->reload ?>
-    </button>
-    
-    <?= $current_module->language->pms_page_title ?>
-</h1>
-
 <? if( count($conversations) == 0 ): ?>
-    <div class="framed_content state_highlight">
+    <div class="framed_content state_highlight" style="margin-top: 0;">
         <span class="fa fa-info-circle"></span>
         <?= $current_module->language->messages->no_conversations ?>
     </div>
     <? return; ?>
 <? endif; ?>
 
+<script type="text/javascript" src="<?=$config->full_root_path?>/lib/jquery.exptextarea.js"></script>
+<script type="text/javascript">
+    
+    function open_conversation(other_user_id, trigger)
+    {
+        if( $(trigger).hasClass('selected') ) return;
+        
+        var $form = $('#pms_filter_form');
+        $form.find('input[name="search_for"]').val('');
+        $form.find('input[name="offset"]').val('0');
+        $form.find('input[name="order"]').val('1');
+        $form.find('input[name="with"]').val(other_user_id);
+        $form.submit();
+    }
+    
+    function reset_pms_filter()
+    {
+        var $form = $('#pms_filter_form');
+        $form.find('input[name="search_for"]').val('');
+        $form.find('select[name="limit"] option[value="20"]').prop('selected', true);
+        $form.find('input[name="offset"]').val('0');
+        $form.find('input[name="order"]').val('1');
+    }
+    
+    //noinspection JSUnusedGlobalSymbols
+    function paginate_pms_browser(value)
+    {
+        var $form = $('#pms_filter_form');
+        $form.find('input[name="offset"]').val(value);
+        $form.submit();
+    }
+
+    function add_pm_inlined_photo(type, icon)
+    {
+        var html = '<div class="attachment framed_content state_highlight clearfix">'
+                 +     '<span class="fa pseudo_link fa-trash fa-fw pull-right" onclick="remove_pm_inlined_photo(this)"></span>'
+                 +     sprintf('<span class="fa %s fa-fw"></span> ', icon)
+                 +     sprintf('<input type="file" name="attachments[%1$s][]" accept="%1$s/*"> ', type)
+                 + '</div>';
+    
+        $('#send_pm_paged_form').find('.attachments').append(html);
+    }
+    
+    function remove_pm_inlined_photo(trigger)
+    {
+        $(trigger).closest('.attachment').fadeOut('fast', function() { $(this).remove(); });
+    }
+    
+    function prepare_pm_sending(formData, $form, options)
+    {
+        $form.block(blockUI_medium_params);
+    }
+    
+    function process_pm_response(responseText, statusText, xhr, $form)
+    {
+        if( responseText != 'OK' )
+        {
+            alert(responseText);
+            
+            $form.unblock();
+            return;
+        }
+        
+        $form.unblock();
+        $('#refresh_pm_conversation').click();
+    }
+</script>
+
 <div id="pms_viewer" class="clearfix">
+    
     <div class="conversations">
-        <? foreach($conversations as $conversation):
-            $author   = $authors[$conversation->id_other];
+        <? foreach($conversations as $index => $conversation):
+            $author = $authors[$conversation->id_other];
+            if( empty($_GET["with"]) ) $_GET["with"] = $author->user_name;
             $selected = $author->user_name == $_GET["with"] ? "selected" : "";
             ?>
             
-            <div class="meta_box conversation_item <?= $selected ?> clearfix">
+            <div class="meta_box conversation_item <?= $selected ?> clearfix"
+                 onclick="open_conversation('<?= $author->user_name ?>', this)">
                 <img class="user_avatar" src="<?= $author->get_avatar_url() ?>">
                 <div class="meta_section upper">
                     <span class="pull-right">
@@ -67,9 +129,17 @@ $authors = $accounts_repository->get_multiple($author_ids);
             
         <? endforeach; ?>
     </div>
+    
     <div class="messages">
-        <p>
-        Texto del último mensaje o la conversación elegida
-        </p>
+        <? $url = "pms_browser.php?with=" . trim(stripslashes($_GET["with"])) . "&wasuuup=" . md5(mt_rand(1, 65535)); ?>
+        <div id="pms_browser" class="ajax_record_browser" data-src="<?= $url ?>">
+            <div class="framed_content state_highlight" style="padding: 100px 0; text-align: center; margin-top: 0;">
+                <span class="fa fa-spinner fa-pulse"></span>
+                <?= $language->wait ?>
+            </div>
+        </div>
+        
     </div>
 </div>
+
+<div id="pm_paged_form_target" style="display: none;"></div>

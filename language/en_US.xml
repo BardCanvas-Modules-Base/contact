@@ -104,6 +104,20 @@
         </content>
     </send_pm_form>
     
+    <pms_nav>
+        <title>Conversation with {$with}</title>
+        <search_placeholder>Search in this conversation</search_placeholder>
+        <select_conversation>Please select a conversation</select_conversation>
+        <other_account_not_found>Sorry, but the other account wasn't found. It may have been deleted.</other_account_not_found>
+        <no_messages_found>No messages have been found on this conversation with the current filters.</no_messages_found>
+        <actions>
+            <send_pm>Send PM</send_pm>
+            <send_reply>Send a reply</send_reply>
+            <add_photo>Attach photo</add_photo>
+            <send>Send</send>
+        </actions>
+    </pms_nav>
+    
     <messages>
         <invalid_target>Sorry, but the target account is either invalid or it doesn't exist in the database.</invalid_target>
         <empty_subject>Please type a subject for your message.</empty_subject>
@@ -121,6 +135,10 @@
             <a href='{$link}'>Click here to check it.</a>
         ]]></received_pm>
         <no_conversations>You don't have any private conversations registered.</no_conversations>
+        <cannot_create_dir>Can't create directory "{$dir}". Please notify the webmaster!</cannot_create_dir>
+        <invalid_uploaded_file>The file "{$file}" isn't a valid upload. Please try again.</invalid_uploaded_file>
+        <invalid_pm_attachment>Invalid attachment type. Please upload a png/jpg/jpeg/gif image.</invalid_pm_attachment>
+        <cannot_move_attachment>Can't move "{$file}" to "{$target}"! Please notify the webmaster!</cannot_move_attachment>
     </messages>
     
 </language>

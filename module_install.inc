@@ -20,6 +20,7 @@ $tables = array(
     "pms" => "
         CREATE TABLE IF NOT EXISTS `pms` (
           `id_pm`              VARCHAR(32) NOT NULL DEFAULT '',
+          `id_owner`           VARCHAR(32) NOT NULL DEFAULT '',
           `id_sender`          VARCHAR(32) NOT NULL DEFAULT '',
           `id_recipient`       VARCHAR(32) NOT NULL DEFAULT '',
           `sent_date`          DATETIME NOT NULL,
@@ -29,8 +30,8 @@ $tables = array(
           `contents`           TEXT,
           
           PRIMARY KEY            (`id_pm`),
-          INDEX   `by_sender`    (`id_sender`, `sent_date`),
-          INDEX   `by_recipient` (`id_recipient`, `sent_date`)
+          INDEX   `by_sender`    (`id_owner`, `id_sender`),
+          INDEX   `by_recipient` (`id_owner`, `id_recipient`)
         ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE='utf8mb4_unicode_ci'
     ",
     "pm_conversations" => "

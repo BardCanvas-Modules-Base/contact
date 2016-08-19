@@ -32,6 +32,6 @@ if( is_null($recipient) ) die($current_module->language->messages->invalid_targe
 
 <form name="send_pm_form" id="send_pm_form" method="post" action="<?= $config->full_root_path ?>/contact/send_pm.php">
     <input type="hidden" name="target" value="<?= $recipient->user_name ?>">
-    <textarea name="content" style="height: 125px; width: 100%;"
+    <textarea name="content" class="pm_input" style="height: 125px; width: 100%;"
               placeholder="<?= $current_module->language->send_pm_form->content->placeholder ?>"></textarea>
 </form>
