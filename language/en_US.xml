@@ -29,6 +29,7 @@
     
     <engine_prefs>
         <title>Contact preferences</title>
+        
         <specs key="allow_emails" selector_default="true">
             <title>Allow everyone to email me</title>
             <description><![CDATA[
@@ -38,6 +39,60 @@
             ]]></description>
             <type>boolean</type>
         </specs>
+        
+        <specs key="email_on_post_comments" selector_default="true">
+            <title>Email me on post comments</title>
+            <description><![CDATA[
+                Receive an email when someone else comments your post (it doesn't apply to replies)
+            ]]></description>
+            <type>boolean</type>
+        </specs>
+        <specs key="email_on_comment_replies" selector_default="true">
+            <title>Email me on comment replies</title>
+            <description><![CDATA[
+                Receive an email when someone else replies your comments
+            ]]></description>
+            <type>boolean</type>
+        </specs>
+        
+        <!-- The next ones are for mods and up -->
+        <specs key="moderator_emails_for_posts" selector_default="true" min_account_level="200">
+            <title>Email me when new posts are published</title>
+            <description><![CDATA[
+                <span class="framed_content inlined state_highlight">
+                    <span class="fa fa-info-circle"></span>
+                    Mods/admins only
+                </span>
+                Receive an email with the excerpt and some statistics.
+                Applies to posts from everyone except your own.
+            ]]></description>
+            <type>boolean</type>
+        </specs>
+        <specs key="moderator_emails_for_media" selector_default="true" min_account_level="200">
+            <title>Email me when new media items are published</title>
+            <description><![CDATA[
+                <span class="framed_content inlined state_highlight">
+                    <span class="fa fa-info-circle"></span>
+                    Mods/admins only
+                </span>
+                Receive an email with the description and a preview of the media item being published (if possible).
+                Applies to submissions from everyone except your own.
+            ]]></description>
+            <type>boolean</type>
+        </specs>
+        <specs key="moderator_emails_for_comments" selector_default="true" min_account_level="200">
+            <title>Email me when new comments are added</title>
+            <description><![CDATA[
+                <span class="framed_content inlined state_highlight">
+                    <span class="fa fa-info-circle"></span>
+                    Mods/admins only
+                </span>
+                Receive an email with the comment and the context.
+                Applies to comments from everyone except your own.
+            ]]></description>
+            <type>boolean</type>
+        </specs>
+        
     </engine_prefs>
     
     <title>
