@@ -35,4 +35,25 @@
         <!--<post_rendering></post_rendering>-->
     </template_includes>
     
+    <extends_to>
+        <comments>
+            <add_comment>
+                <after_saving priority="900">extenders/comments_after_saving.inc</after_saving>
+            </add_comment>
+            <save_comment>
+                <after_saving priority="900">extenders/comments_after_saving.inc</after_saving>
+            </save_comment>
+        </comments>
+        <posts>
+            <save_post>
+                <after_saving priority="900">extenders/posts_after_saving.inc</after_saving>
+            </save_post>
+        </posts>
+        <gallery>
+            <save_item>
+                <after_saving priority="900">extenders/gallery_after_saving.inc</after_saving>
+            </save_item>
+        </gallery>
+    </extends_to>
+    
 </module>

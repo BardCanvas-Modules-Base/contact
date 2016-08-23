@@ -95,6 +95,209 @@
         
     </engine_prefs>
     
+    <email_templates>
+        
+        <comment_added>
+            <for_author>
+                <subject>A comment has been submitted to your post titled "{$title}" on {$website_name}</subject>
+                <body><![CDATA[
+                    <p>Greetings, {$author}! {$comment_sender} has commented on your post
+                    <a href="{$post_link}">{$post_title}</a>:</p>
+                    
+                    <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                        {$comment}
+                    </blockquote>
+                    
+                    <p><i>Note: actual content may differ due to email limitations.</i></p>
+                    
+                    <p><b style="color: red;">Do not reply to this email!</b> Click on any of the next actions:</p>
+                    <ul>
+                        <li><a href="{$reply_url}"><b>Reply</b></a> to {$comment_sender}.</li>
+                        <li><a href="{$report_url}"><b>Report</b></a> as spam or inappropiate.</li>
+                        <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                    </ul>
+                    
+                    <p>Regards,<br>
+                    {$website_name}</p>
+                ]]></body>
+            </for_author>
+            <for_mods>
+                <subject>[{$website_name}] Comment submitted to {$author}'s post "{$title}"</subject>
+                <body><![CDATA[
+                    <p>{$comment_sender} has commented on {$author}'s post
+                    <a href="{$post_link}">{$post_title}</a>:</p>
+                    
+                    <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                        {$comment}
+                    </blockquote>
+                    
+                    <p><i>Note: actual content may differ due to email limitations.</i></p>
+                    
+                    <p>Available mod/admin actions:</p>
+                    <ul>
+                        <li>Add a <a href="{$reply_url}"><b>reply</b></a> to the comment.</li>
+                        <li><a href="{$flag_url}"><b>Flag</b></a> as spam or inappropiate.</li>
+                        <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                    </ul>
+                    
+                    <p>Regards,<br>
+                    {$website_name}</p>
+                ]]></body>
+            </for_mods>
+        </comment_added>
+        
+        <comment_replied>
+            <for_parent_author>
+                <subject>Someone has replied to your comment on {$post_author}'s post "{$post_title}"</subject>
+                <body><![CDATA[
+                    <p>Greetings, {$parent_author}! {$comment_sender} has replied to your comment on
+                    {$post_author} post <a href="{$post_link}">{$post_title}</a>:</p>
+                    
+                    <p>Excerpt of your comment:</p>
+                    <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                        {$parent_excerpt}
+                    </blockquote>
+                    
+                    <p>{$comment_sender}'s reply:</p>
+                    <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                        {$comment}
+                    </blockquote>
+                    
+                    <p><i>Note: actual content may differ due to email limitations.</i></p>
+                    
+                    <p><b style="color: red;">Do not reply to this email!</b> Click on any of the next actions:</p>
+                    <ul>
+                        <li><a href="{$reply_url}"><b>Reply</b></a> to {$comment_sender}.</li>
+                        <li><a href="{$report_url}"><b>Report</b></a> as spam or inappropiate.</li>
+                        <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                    </ul>
+                    
+                    <p>Regards,<br>
+                    {$website_name}</p>
+                ]]></body>
+            </for_parent_author>
+            <for_mods>
+                <subject>[{$website_name}] Comment reply submitted on {$post_author}'s post "{$post_title}"</subject>
+                <body><![CDATA[
+                    <p>{$comment_sender} has replied to {$parent_author}'s comment on {$post_author}'s post
+                    <a href="{$post_link}">{$post_title}</a>.</p>
+                    
+                    <p>Excerpt of {$parent_author}'s comment:</p>
+                    <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                        {$parent_excerpt}
+                    </blockquote>
+                    
+                    <p>{$comment_sender}'s reply:</p>
+                    <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                        {$comment}
+                    </blockquote>
+                    
+                    <p><i>Note: actual content may differ due to email limitations.</i></p>
+                    
+                    <p>Available mod/admin actions:</p>
+                    <ul>
+                        <li>Add a <a href="{$reply_url}"><b>reply</b></a> to the comment.</li>
+                        <li><a href="{$flag_url}"><b>Flag</b></a> as spam or inappropiate.</li>
+                        <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                    </ul>
+                    
+                    <p>Regards,<br>
+                    {$website_name}</p>
+                ]]></body>
+            </for_mods>
+        </comment_replied>
+        
+        <post_submitted>
+            <subject>[{$website_name}] New post from {$post_author}: "{$post_title}"</subject>
+            <body><![CDATA[
+                <p>{$post_author} has posted a new entry on
+                <a href="{$main_category_url}">{$main_category}</a> titled
+                "<a href="{$post_link}">{$post_title}</a>".</p>
+                
+                <p>Excerpt:</p>
+                <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                    {$excerpt}
+                </blockquote>
+                
+                <p>Featured image:</p>
+                <blockquote>
+                    {$featured_image}
+                </blockquote>
+                
+                <p>Submission info:</p>
+                <ul>
+                    <li>User IP: {$ip}</li>
+                    <li>Location data: {$location}</li>
+                    <li>Browser: {$user_agent}</li>
+                </ul>
+                
+                <p>Last 12 posts from the same network segment during the last 7 days:</p>
+                <ul>
+                    {$other_posts_from_segment}
+                </ul>
+                
+                <p>Available actions:</p>
+                <ul>
+                    <li><a href="{$post_url}">See to the post</a>.</li>
+                    <li><a href="{$edit_url}"><b>Review</b></a> the post in the editor.</li>
+                    <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                </ul>
+                
+                <p>Regards,<br>
+                {$website_name}</p>
+            ]]></body>
+            <none_found>None found</none_found>
+            <none_defined>None defined</none_defined>
+        </post_submitted>
+        
+        <media_item_submitted>
+            <subject>[{$website_name}] New {$type} from {$item_author}: {$title}</subject>
+            <body><![CDATA[
+                <p>{$item_author} has published a {$type} item.</p>
+                
+                <p>Title:</p>
+                <blockquote>
+                    <a href="{$item_url}">{$title}</a>
+                </blockquote>
+                
+                <p>Thumbnail:</p>
+                <blockquote>
+                    <a href="{$item_url}"><img height="200" border="1" src="{$thumbnail}"></a>
+                </blockquote>
+                
+                <p>Description:</p>
+                <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                    {$description}
+                </blockquote>
+                
+                <p>Submission info:</p>
+                <ul>
+                    <li>User IP: {$ip}</li>
+                    <li>Location data: {$location}</li>
+                    <li>Browser: {$user_agent}</li>
+                </ul>
+                
+                <p>Last 12 items from the same network segment during the last 7 days:</p>
+                <blockquote>
+                    {$other_from_segment}
+                </blockquote>
+                
+                <p>Available actions:</p>
+                <ul>
+                    <li><a href="{$item_url}">See the item page</a>.</li>
+                    <li><a href="{$edit_url}"><b>Review</b></a> the item in the editor.</li>
+                    <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                </ul>
+                
+                <p>Regards,<br>
+                {$website_name}</p>
+            ]]></body>
+            <none_found>None found</none_found>
+            <none_defined>None defined</none_defined>
+        </media_item_submitted>
+        
+    </email_templates>
+    
     <title>
         <general>Send email to {$site_name}'s staff</general>
         <targeted>Send email to {$site_name} user</targeted>
