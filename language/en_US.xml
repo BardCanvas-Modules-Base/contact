@@ -122,7 +122,7 @@
                 ]]></body>
             </for_author>
             <for_mods>
-                <subject>[{$website_name}] Comment submitted to {$author}'s post "{$title}"</subject>
+                <subject>[{$website_name}/Moderators] Comment submitted to {$author}'s post "{$title}"</subject>
                 <body><![CDATA[
                     <p>{$comment_sender} has commented on {$author}'s post
                     <a href="{$post_link}">{$post_title}</a>:</p>
@@ -177,7 +177,7 @@
                 ]]></body>
             </for_parent_author>
             <for_mods>
-                <subject>[{$website_name}] Comment reply submitted on {$post_author}'s post "{$post_title}"</subject>
+                <subject>[{$website_name}/Moderators] Comment reply submitted on {$post_author}'s post "{$post_title}"</subject>
                 <body><![CDATA[
                     <p>{$comment_sender} has replied to {$parent_author}'s comment on {$post_author}'s post
                     <a href="{$post_link}">{$post_title}</a>.</p>
@@ -208,7 +208,7 @@
         </comment_replied>
         
         <post_submitted>
-            <subject>[{$website_name}] New post from {$post_author}: "{$post_title}"</subject>
+            <subject>[{$website_name}/Moderators] New post from {$post_author}: "{$post_title}"</subject>
             <body><![CDATA[
                 <p>{$post_author} has posted a new entry on
                 <a href="{$main_category_url}">{$main_category}</a> titled
@@ -251,7 +251,7 @@
         </post_submitted>
         
         <media_item_submitted>
-            <subject>[{$website_name}] New {$type} from {$item_author}: {$title}</subject>
+            <subject>[{$website_name}/Moderators] New {$type} from {$item_author}: {$title}</subject>
             <body><![CDATA[
                 <p>{$item_author} has published a {$type} item.</p>
                 
