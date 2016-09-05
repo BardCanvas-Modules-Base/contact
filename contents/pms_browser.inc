@@ -208,7 +208,7 @@ $unread_ids = array();
                         </div>
                         
                         <div class="contents">
-                            <?= nl2br($row->contents) ?>
+                            <?= $row->get_processed_contents() ?>
                         </div>
                     </div>
                     

@@ -31,4 +31,8 @@ textarea.pm_input, #conversation_container .pm_items .pm_item {
     font-family: Arial, Helvetica, sans-serif; font-size: 11pt;
 }
 
+#conversation_container .pm_items .pm_item .contents p {
+    margin: 0;
+}
+
 img.pm_attachment { max-width: 100%; border: 1px solid black; }
