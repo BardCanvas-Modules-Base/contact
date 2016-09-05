@@ -19,6 +19,8 @@ class toolbox
         $post_author    = $config->globals["contact:comments/post_author"];
         $comment_author = $config->globals["contact:comments/comment_author"];
         
+        if( $comment_author->id_account == $post_author->id_account ) return;
+        
         $subject = replace_escaped_vars(
             $modules["contact"]->language->email_templates->comment_added->for_author->subject,
             array(
@@ -116,7 +118,9 @@ class toolbox
             )
         );
         
-        broadcast_mail_to_moderators($subject, $body, "@contact:moderator_emails_for_comments");
+        broadcast_mail_to_moderators(
+            $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
+        );
     }
     
     public function notify_parent_author_on_comment_reply()
@@ -133,6 +137,8 @@ class toolbox
         $parent_author  = $config->globals["contact:comments/parent_author"] ;
         $post_author    = $config->globals["contact:comments/post_author"]   ;
         $comment_author = $config->globals["contact:comments/comment_author"];
+        
+        if( $comment_author->id_account == $parent_author->id_account ) return;
         
         $subject = replace_escaped_vars(
             $modules["contact"]->language->email_templates->comment_replied->for_parent_author->subject,
@@ -243,7 +249,9 @@ class toolbox
             )
         );
         
-        broadcast_mail_to_moderators($subject, $body, "@contact:moderator_emails_for_comments");
+        broadcast_mail_to_moderators(
+            $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
+        );
     }
     
     public function notify_mods_on_post_submission()
@@ -356,7 +364,7 @@ class toolbox
          * @var account_record $item_author
          */
         $item_author = $config->globals["contact:media/item_author"];
-        $type        = $modules["gallery"]->language->xpath("//media_types/media[@type='{$item->type}']/caption/text()");
+        $type        = trim(current($modules["gallery"]->language->xpath("//media_types/media[@type='{$item->type}']/caption")));
         
         $subject = replace_escaped_vars(
             $modules["contact"]->language->email_templates->media_item_submitted->subject,
@@ -442,6 +450,8 @@ class toolbox
             )
         );
         
-        broadcast_mail_to_moderators($subject, $body, "@contact:moderator_emails_for_posts");
+        broadcast_mail_to_moderators(
+            $subject, $body, "@contact:moderator_emails_for_posts", array($item_author->id_account)
+        );
     }
 }
