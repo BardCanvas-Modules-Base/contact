@@ -5,7 +5,7 @@ use hng2_repository\abstract_repository;
 
 class pms_repository extends abstract_repository
 {
-    protected $row_class       = "hng2_base\\pm_record";
+    protected $row_class       = "hng2_modules\\contact\\pm_record";
     protected $table_name      = "pms";
     protected $key_column_name = "id_pm";
     
