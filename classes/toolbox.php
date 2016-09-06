@@ -350,7 +350,9 @@ class toolbox
             )
         );
         
-        broadcast_mail_to_moderators($subject, $body, "@contact:moderator_emails_for_posts");
+        broadcast_mail_to_moderators(
+            $subject, $body, "@contact:moderator_emails_for_posts", array($post->id_author)
+        );
     }
     
     public function notify_mods_on_media_submission()
@@ -358,7 +360,7 @@ class toolbox
         /**
          * @var media_repository $repository
          */
-        global $config, $modules, $settings, $item, $old_item, $repository;
+        global $config, $modules, $settings, $item, $repository;
         
         /**
          * @var account_record $item_author
