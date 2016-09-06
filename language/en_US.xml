@@ -115,6 +115,7 @@
                         <li><a href="{$reply_url}"><b>Reply</b></a> to {$comment_sender}.</li>
                         <li><a href="{$report_url}"><b>Report</b></a> as spam or inappropiate.</li>
                         <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                        <li><a href="{$blacklist_email}"><b>Blacklist this email address</b></a> so no emails from us are sent to it.</li>
                     </ul>
                     
                     <p>Regards,<br>
@@ -198,6 +199,7 @@
                         <li><a href="{$reply_url}"><b>Reply</b></a> to {$comment_sender}.</li>
                         <li><a href="{$report_url}"><b>Report</b></a> as spam or inappropiate.</li>
                         <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                        <li><a href="{$blacklist_email}"><b>Blacklist this email address</b></a> so no emails from us are sent to it.</li>
                     </ul>
                     
                     <p>Regards,<br>
@@ -460,5 +462,52 @@
         <invalid_pm_attachment>Invalid attachment type. Please upload a png/jpg/jpeg/gif image.</invalid_pm_attachment>
         <cannot_move_attachment>Can't move "{$file}" to "{$target}"! Please notify the webmaster!</cannot_move_attachment>
     </messages>
+    
+    <email_blacklisting>
+        <title>Email blacklist facility</title>
+        <security_module_missing>Sorry, but the security module isn't enabled or installed.</security_module_missing>
+        <missing_address>Please specify an email address to blacklist.</missing_address>
+        <invalid_address>The "{$address}" address is not a valid email address.</invalid_address>
+        <blacklisted_ok>Address "{$address}" Successfully added to the emails blacklist.</blacklisted_ok>
+        <already_blacklisted>The "{$address}" address was already blacklisted.</already_blacklisted>
+        <only_for_mods>Sorry, but this option is only available for mods/admins.</only_for_mods>
+        <removed_ok>Address "{$address}" successfully removed from the emails blacklist.</removed_ok>
+        <not_found>The "{$address}" address wasn't found in emails blacklist.</not_found>
+        
+        <notification_to_mods>
+            <on_addition>
+                <subject>[{$website_name}/Moderators] Email address blacklisted: {$blacklisted_address}</subject>
+                <body><![CDATA[
+                    <p>Greetings! Someone has blacklisted an email address. Details:</p>
+                    
+                    <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                        <ul>
+                            <li>Address being blacklisted: {$blacklisted_address}</li>
+                            <li>Triggering user: {$current_user_display_name}</li>
+                            <li>IP: {$ip}</li>
+                            <li>Hostname: {$hostname}</li>
+                            <li>Location: {$location}</li>
+                            <li>ISP: {$isp}</li>
+                            <li>Browser: {$browser}</li>
+                        </ul>
+                    </blockquote>
+                    
+                    <p>Available actions:</p>
+                    <ul>
+                        <li><a href="{$remove_blacklist}"><b>Undo</b></a> and take the address out of the blacklist.</li>
+                        <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                    </ul>
+                    
+                    <p>Regards,<br>
+                    {$website_name}</p>
+                ]]></body>
+            </on_addition>
+            <on_removal>
+                <body><![CDATA[
+                    {$current_user_display_name} removed "{$blacklisted_address}" from the emails blacklist.
+                ]]></body>
+            </on_removal>
+        </notification_to_mods>
+    </email_blacklisting>
     
 </language>
