@@ -111,7 +111,7 @@ class toolbox
                 $post->title,
                 $comment->content,
                 "{$config->full_root_url}/{$post->id_post}#comment_{$comment->id_comment}",
-                "{$config->full_root_url}/comments/scripts/toolbox.php?action=change_status&new_status=spam&id_comment={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?flag_as_spam={$comment->id_comment}",
                 "{$config->full_root_url}/accounts/preferences.php",
                 $settings->get("engine.website_name"),
                 "{$config->full_root_url}/{$post->id_post}",
