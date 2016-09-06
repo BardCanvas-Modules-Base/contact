@@ -20,9 +20,24 @@ $sender_name  = $account->_exists ? htmlspecialchars($account->display_name) : "
 $sender_email = $account->_exists ? $account->email                          : "";
 $readonly     = $account->_exists ? "readonly"                               : "";
 $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET["target"]);
+
+$config->globals["@contact:subject"]     = "";
+$config->globals["@contact:content"]     = "";
+$config->globals["@contact:show_errors"] = array();
+$current_module->load_extensions("form", "presets");
 ?>
 
+<script type="text/javascript" src="<?= $config->full_root_path ?>/lib/jquery.exptextarea.js"></script>
+
 <h1><?= $template->get("title") ?></h1>
+
+<? if( count($config->globals["@contact:show_errors"]) > 0 ): ?>
+    <div class="framed_content state_ko">
+        <? foreach($config->globals["@contact:show_errors"] as $error): ?>
+            <p><span class="fa fa-warning"></span> <?= $error ?></p>
+        <? endforeach; ?>
+    </div>
+<? endif; ?>
 
 <? if( $settings->get("engine.recaptcha_private_key") == "" || $settings->get("engine.recaptcha_public_key") == "" ): ?>
     <div class="framed_content state_ko">
@@ -106,7 +121,7 @@ $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET[
             <?= $current_module->language->fields->subject ?>
         </div>
         <div class="input">
-            <textarea name="subject" class="expandible_textarea"></textarea>
+            <textarea name="subject" class="expandible_textarea"><?= htmlspecialchars($config->globals["@contact:subject"]) ?></textarea>
         </div>
     </div>
     
@@ -115,7 +130,7 @@ $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET[
             <?= $current_module->language->fields->content ?>
         </div>
         <div class="input">
-            <textarea name="content" class="tinymce_minimal"></textarea>
+            <textarea name="content" class="tinymce_minimal"><?= htmlspecialchars($config->globals["@contact:content"]) ?></textarea>
         </div>
     </div>
     
@@ -168,10 +183,15 @@ $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET[
         location.reload();
     }
     
-    $('#contact_form').ajaxForm({
-        target:          '#contact_form_target',
-        beforeSerialize: prepare_contact_form_serialization,
-        beforeSubmit:    prepare_contact_form_submission,
-        success:         process_contact_form_submission
+    $(document).ready(function()
+    {
+        $('#contact_form').ajaxForm({
+            target:          '#contact_form_target',
+            beforeSerialize: prepare_contact_form_serialization,
+            beforeSubmit:    prepare_contact_form_submission,
+            success:         process_contact_form_submission
+        });
+        
+        $('.expandible_textarea').expandingTextArea();
     })
 </script>

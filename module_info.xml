@@ -37,6 +37,7 @@
     
     <extension_areas_info><![CDATA[
         PM Record Class: Get Processed Contents.
+        Form: presets.
     ]]></extension_areas_info>
     
     <extends_to>
