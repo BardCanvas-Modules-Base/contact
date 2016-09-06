@@ -99,6 +99,8 @@ class toolbox
                 '{$comment}',
                 '{$reply_url}',
                 '{$flag_url}',
+                '{$reject_url}',
+                '{$trash_url}',
                 '{$preferences}',
                 '{$website_name}',
                 '{$post_link}',
@@ -112,12 +114,78 @@ class toolbox
                 $comment->content,
                 "{$config->full_root_url}/{$post->id_post}#comment_{$comment->id_comment}",
                 "{$config->full_root_url}/comments/?flag_as_spam={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?reject={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?delete={$comment->id_comment}",
                 "{$config->full_root_url}/accounts/preferences.php",
                 $settings->get("engine.website_name"),
                 "{$config->full_root_url}/{$post->id_post}",
             )
         );
         
+        broadcast_mail_to_moderators(
+            $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
+        );
+    }
+    
+    public function notify_mods_on_comment_for_review()
+    {
+        global $config, $modules, $settings, $post, $comment;
+    
+        /**
+         * @var account_record $post_author
+         * @var account_record $comment_author
+         */
+        $post_author    = $config->globals["contact:comments/post_author"];
+        $comment_author = $config->globals["contact:comments/comment_author"];
+    
+        $subject = replace_escaped_vars(
+            $modules["contact"]->language->email_templates->comment_added->for_review->subject,
+            array(
+                '{$website_name}',
+                '{$author}',
+                '{$title}',
+            ),
+            array(
+                $settings->get("engine.website_name"),
+                $post_author->display_name,
+                $post->title,
+            )
+        );
+    
+        $body = replace_escaped_vars(
+            $modules["contact"]->language->email_templates->comment_added->for_review->body,
+            array(
+                '{$comment_sender}',
+                '{$author}',
+                '{$post_title}',
+                '{$comment}',
+                '{$reply_url}',
+                '{$flag_url}',
+                '{$approve_url}',
+                '{$reject_url}',
+                '{$trash_url}',
+                '{$preferences}',
+                '{$website_name}',
+                '{$post_link}',
+            ),
+            array(
+                empty($comment->id_author)
+                    ? $comment->author_display_name
+                    : "<a href='{$config->full_root_url}/user/{$comment_author->user_name}'>$comment_author->display_name</a>",
+                $post_author->display_name,
+                $post->title,
+                $comment->content,
+                "{$config->full_root_url}/{$post->id_post}#comment_{$comment->id_comment}",
+                "{$config->full_root_url}/comments/?flag_as_spam={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?approve={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?reject={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?delete={$comment->id_comment}",
+                "{$config->full_root_url}/accounts/preferences.php",
+                $settings->get("engine.website_name"),
+                "{$config->full_root_url}/{$post->id_post}",
+            )
+        );
+    
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
         );
@@ -228,6 +296,8 @@ class toolbox
                 '{$parent_excerpt}',
                 '{$comment}',
                 '{$reply_url}',
+                '{$reject_url}',
+                '{$trash_url}',
                 '{$flag_url}',
                 '{$preferences}',
                 '{$website_name}',
@@ -243,12 +313,86 @@ class toolbox
                 make_excerpt_of($parent_comment->content, 255),
                 $comment->content,
                 "{$config->full_root_url}/{$post->id_post}#comment_{$comment->id_comment}",
-                "{$config->full_root_url}/comments/scripts/toolbox.php?action=change_status&new_status=spam&id_comment={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?flag_as_spam={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?reject={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?delete={$comment->id_comment}",
                 "{$config->full_root_url}/accounts/preferences.php",
                 $settings->get("engine.website_name"),
             )
         );
         
+        broadcast_mail_to_moderators(
+            $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
+        );
+    }
+    
+    public function notify_mods_on_reply_for_review()
+    {
+        global $config, $modules, $settings, $post, $comment;
+    
+        /**
+         * @var comment_record $parent_comment
+         * @var account_record $parent_author
+         * @var account_record $post_author
+         * @var account_record $comment_author
+         */
+        $parent_comment = $config->globals["contact:comments/parent_comment"];
+        $parent_author  = $config->globals["contact:comments/parent_author"] ;
+        $post_author    = $config->globals["contact:comments/post_author"]   ;
+        $comment_author = $config->globals["contact:comments/comment_author"];
+    
+        $subject = replace_escaped_vars(
+            $modules["contact"]->language->email_templates->comment_replied->for_review->subject,
+            array(
+                '{$website_name}',
+                '{$post_author}',
+                '{$post_title}',
+            ),
+            array(
+                $settings->get("engine.website_name"),
+                $post_author->display_name,
+                $post->title,
+            )
+        );
+    
+        $body = replace_escaped_vars(
+            $modules["contact"]->language->email_templates->comment_replied->for_review->body,
+            array(
+                '{$comment_sender}',
+                '{$parent_author}',
+                '{$post_author}',
+                '{$post_link}',
+                '{$post_title}',
+                '{$parent_excerpt}',
+                '{$comment}',
+                '{$reply_url}',
+                '{$flag_url}',
+                '{$approve_url}',
+                '{$reject_url}',
+                '{$trash_url}',
+                '{$preferences}',
+                '{$website_name}',
+            ),
+            array(
+                empty($comment->id_author)
+                    ? $comment_author->author_display_name
+                    : "<a href='{$config->full_root_url}/user/{$comment_author->user_name}'>$comment_author->display_name</a>",
+                $parent_author->display_name,
+                $post_author->display_name,
+                "{$config->full_root_url}/{$post->id_post}",
+                $post->title,
+                make_excerpt_of($parent_comment->content, 255),
+                $comment->content,
+                "{$config->full_root_url}/{$post->id_post}#comment_{$comment->id_comment}",
+                "{$config->full_root_url}/comments/?flag_as_spam={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?approve={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?reject={$comment->id_comment}",
+                "{$config->full_root_url}/comments/?delete={$comment->id_comment}",
+                "{$config->full_root_url}/accounts/preferences.php",
+                $settings->get("engine.website_name"),
+            )
+        );
+    
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
         );

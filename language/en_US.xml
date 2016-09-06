@@ -137,6 +137,8 @@
                     <ul>
                         <li>Add a <a href="{$reply_url}"><b>reply</b></a> to the comment.</li>
                         <li><a href="{$flag_url}"><b>Flag</b></a> as spam or inappropiate.</li>
+                        <li><a href="{$reject_url}"><b style="color: maroon;">Reject</b></a> the comment.</li>
+                        <li><a href="{$trash_url}"><b style="color: maroon;">Delete it</b></a> (send it to the trash can).</li>
                         <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
                     </ul>
                     
@@ -144,6 +146,32 @@
                     {$website_name}</p>
                 ]]></body>
             </for_mods>
+            <for_review>
+                <subject>[{$website_name}/Moderators] Please review the comment submitted to {$author}'s post "{$title}"</subject>
+                <body><![CDATA[
+                    <p>{$comment_sender} has commented on {$author}'s post
+                    <a href="{$post_link}">{$post_title}</a>, but the comment was automatically
+                    flagged for review:</p>
+                    
+                    <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                        {$comment}
+                    </blockquote>
+                    
+                    <p><i>Note: actual content may differ due to email limitations.</i></p>
+                    
+                    <p>Available mod/admin actions:</p>
+                    <ul>
+                        <li><a href="{$approve_url}"><b style="color: green;">Approve</b></a> the comment.</li>
+                        <li><a href="{$reject_url}"><b style="color: maroon;">Reject</b></a> the comment.</li>
+                        <li><a href="{$trash_url}"><b style="color: maroon;">Delete it</b></a> (send it to the trash can).</li>
+                        <li>Add a <a href="{$reply_url}"><b>reply</b></a> to the comment.</li>
+                        <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                    </ul>
+                    
+                    <p>Regards,<br>
+                    {$website_name}</p>
+                ]]></body>
+            </for_review>
         </comment_added>
         
         <comment_replied>
@@ -198,6 +226,8 @@
                     <ul>
                         <li>Add a <a href="{$reply_url}"><b>reply</b></a> to the comment.</li>
                         <li><a href="{$flag_url}"><b>Flag</b></a> as spam or inappropiate.</li>
+                        <li><a href="{$reject_url}"><b style="color: maroon;">Reject</b></a> the comment.</li>
+                        <li><a href="{$trash_url}"><b style="color: maroon;">Delete it</b></a> (send it to the trash can).</li>
                         <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
                     </ul>
                     
@@ -205,6 +235,38 @@
                     {$website_name}</p>
                 ]]></body>
             </for_mods>
+            <for_review>
+                <subject>[{$website_name}/Moderators] Please review the reply submitted on {$post_author}'s post "{$post_title}"</subject>
+                <body><![CDATA[
+                    <p>{$comment_sender} has replied to {$parent_author}'s comment on {$post_author}'s post
+                    <a href="{$post_link}">{$post_title}</a>, but the comment was automatically
+                    flagged for review.</p>
+                    
+                    <p>Excerpt of {$parent_author}'s comment:</p>
+                    <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                        {$parent_excerpt}
+                    </blockquote>
+                    
+                    <p>{$comment_sender}'s reply:</p>
+                    <blockquote style="background-color: whitesmoke; color: black; border-left: 5px solid silver; padding: 10px;">
+                        {$comment}
+                    </blockquote>
+                    
+                    <p><i>Note: actual content may differ due to email limitations.</i></p>
+                    
+                    <p>Available mod/admin actions:</p>
+                    <ul>
+                        <li><a href="{$approve_url}"><b style="color: green;">Approve</b></a> the comment.</li>
+                        <li><a href="{$reject_url}"><b style="color: maroon;">Reject</b></a> the comment.</li>
+                        <li><a href="{$trash_url}"><b style="color: maroon;">Delete it</b></a> (send it to the trash can).</li>
+                        <li>Add a <a href="{$reply_url}"><b>reply</b></a> to the comment.</li>
+                        <li><a href="{$preferences}"><b>Edit your preferences</b></a> to disable these notifications.</li>
+                    </ul>
+                    
+                    <p>Regards,<br>
+                    {$website_name}</p>
+                ]]></body>
+            </for_review>
         </comment_replied>
         
         <post_submitted>

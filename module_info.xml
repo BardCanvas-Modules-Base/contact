@@ -44,6 +44,7 @@
         <comments>
             <add_comment>
                 <after_saving priority="900">extenders/comments_after_saving.inc</after_saving>
+                <after_saving_for_review priority="900">extenders/comments_after_saving_for_review.inc</after_saving_for_review>
             </add_comment>
             <save_comment>
                 <after_saving priority="900">extenders/comments_after_saving.inc</after_saving>
