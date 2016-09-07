@@ -63,7 +63,8 @@ class toolbox
                 "{$config->full_root_url}/{$post->id_post}",
             )
         );
-        
+    
+        $body       = unindent($body);
         $recipients = array($post_author->display_name => $post_author->email);
         send_mail($subject, $body, $recipients);
     }
@@ -124,7 +125,8 @@ class toolbox
                 "{$config->full_root_url}/{$post->id_post}",
             )
         );
-        
+    
+        $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
         );
@@ -189,6 +191,7 @@ class toolbox
             )
         );
     
+        $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
         );
@@ -258,6 +261,7 @@ class toolbox
             )
         );
         
+        $body       = unindent($body);
         $recipients = array($parent_author->display_name => $parent_author->email);
         send_mail($subject, $body, $recipients);
     }
@@ -326,7 +330,8 @@ class toolbox
                 $settings->get("engine.website_name"),
             )
         );
-        
+    
+        $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
         );
@@ -399,6 +404,7 @@ class toolbox
             )
         );
     
+        $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
         );
@@ -499,7 +505,8 @@ class toolbox
                 $settings->get("engine.website_name"),
             )
         );
-        
+    
+        $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_posts", array($post->id_author)
         );
@@ -601,7 +608,8 @@ class toolbox
                 $settings->get("engine.website_name"),
             )
         );
-        
+    
+        $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_posts", array($item_author->id_account)
         );
@@ -651,7 +659,8 @@ class toolbox
                 $settings->get("engine.website_name"),
             )
         );
-        
+    
+        $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_posts", array($account->id_account)
         );
