@@ -22,7 +22,7 @@ $added_class = preg_match('#/contact/index.php#i', $_SERVER["PHP_SELF"]) ? "curr
 $template->add_menu_item(
     trim($this_module->language->menu_caption),
     "
-    <a class='main_menu_item {$added_class}' href='{$config->full_root_path}/contact/'>
+    <a class='main_menu_item {$added_class}' data-module='contact' href='{$config->full_root_path}/contact/'>
         <span class='fa {$this_module->language->icon}'></span>
         {$this_module->language->menu_caption}
     </a>
@@ -39,7 +39,7 @@ $template->add_menu_item(
     "_____login_____",
     "
         <a id='unread_pms_count' class='main_menu_item always_visible $added_class pull-right' 
-           href='{$config->full_root_path}/contact/pms.php'
+           data-module='contact' href='{$config->full_root_path}/contact/pms.php'
            title='{$this_module->language->read_pms}'>
            <span class='fa fa-inbox'></span>
            <span class='unread_count'>{$unread_pms}</span>
