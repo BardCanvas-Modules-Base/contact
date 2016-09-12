@@ -38,6 +38,13 @@ $authors = $accounts_repository->get_multiple($author_ids);
     {
         if( $(trigger).hasClass('selected') ) return;
         
+        var $viewer = $('#pms_viewer');
+        var $conversations = $viewer.find('.conversations');
+    
+        $conversations.find('.conversation_item').toggleClass('selected', false);
+        $(trigger).toggleClass('selected', true);
+        if( $conversations.hasClass('expanded') ) toggle_conversations_area();
+        
         var $form = $('#pms_filter_form');
         $form.find('input[name="search_for"]').val('');
         $form.find('input[name="offset"]').val('0');
@@ -97,11 +104,33 @@ $authors = $accounts_repository->get_multiple($author_ids);
         $form.unblock();
         $('#refresh_pm_conversation').click();
     }
+    
+    function toggle_conversations_area()
+    {
+        var $target     = $('#pms_viewer').find('.conversations');
+        var is_expanded = $target.hasClass('expanded');
+        
+        if( is_expanded )
+        {
+            $target.toggleClass('expanded', false);
+            $target.find('.extender').removeClass('fa-times');
+            $target.find('.extender').addClass('fa-caret-down');
+            // $target.find('.conversation_item:not(.selected)').hide();
+        }
+        else
+        {
+            $target.toggleClass('expanded', true);
+            $target.find('.extender').addClass('fa-times');
+            $target.find('.extender').removeClass('fa-caret-down');
+            // $target.find('.conversation_item').show();
+        }
+    }
 </script>
 
 <div id="pms_viewer" class="clearfix">
     
     <div class="conversations">
+        <div class="extender fa fa-caret-down fa-fw fa-border" onclick="toggle_conversations_area()"></div>
         <? foreach($conversations as $index => $conversation):
             $author = $authors[$conversation->id_other];
             if( empty($_GET["with"]) ) $_GET["with"] = $author->user_name;

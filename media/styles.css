@@ -1,16 +1,49 @@
 
-#pms_viewer .conversations { width: 28%; float: left; overflow: hidden; padding-right: 9px; }
-#pms_viewer .messages      { width: 72%; float: left; padding-left: 9px; border-left: 2px solid silver; }
+/* Single column, conversations selector for screens below 720px */
+#pms_viewer .conversations { height: 55px; overflow: hidden; }
+#pms_viewer .conversations .extender { float: right; margin: 5px 5px 0 10px; height: 45px; cursor: pointer;
+                                       line-height: 32px; font-size: 24px; }
+#pms_viewer .conversations .extender:hover { border-style: outset; background-color: ButtonFace; color: ButtonText; }
+
+/* Two columns for screens above 1024px */
+@media all and (min-width: 1000px) {
+    #pms_viewer .conversations .extender { display: none; }
+    #pms_viewer .conversations { width: 28%; float: left; height: auto; overflow: inherit; padding-right: 9px; }
+    #pms_viewer .messages      { width: 72%; float: left; padding-left: 9px; border-left: 2px solid silver; }
+}
+
+/* Expanded/collapsed */
+
+#pms_viewer .conversations.expanded {
+    position: fixed; overflow: auto;
+    top: 10px; left: 10px; width: calc(100% - 20px); height: calc(100% - 20px);
+    background-color: white;
+    -webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow:    1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    box-shadow:         1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    z-index: 10;
+}
+#pms_viewer .conversations.expanded .extender {
+    height: 32px; width: 32px; font-size: 16px; line-height: 24px;
+}
+
+#pms_viewer .conversations          .conversation_item:not(.selected) { display: none; }
+#pms_viewer .conversations.expanded .conversation_item { display: block; }
+@media all and (min-width: 1000px) {
+    #pms_viewer .conversations .conversation_item:not(.selected) { display: block; }
+}
+
+/* Standard sets */
 
 #pms_viewer .conversation_item {
     margin: 0;
     padding: 5px;
-    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
     cursor: pointer;
 }
 
 /* Note: colors taken from the default styles! These must be ported to the template styles! */
-#pms_viewer .conversation_item:first-child { border-top: none; }
+#pms_viewer .conversation_item:last-child  { border-bottom: none; }
 #pms_viewer .conversation_item:hover       { background-color: #42A0FF; color: white;}
 #pms_viewer .conversation_item.selected    { background-color: #BBDDFF; color: black; cursor: auto; }
 
