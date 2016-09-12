@@ -424,7 +424,7 @@
     <pms_nav>
         <title>Conversación con {$with}</title>
         <search_placeholder>Buscar en esta conversación</search_placeholder>
-        <select_conversation>Selecciona una conversación conversation</select_conversation>
+        <select_conversation>Selecciona una conversación</select_conversation>
         <other_account_not_found>Disculpa, pero la otra cuenta no ha sido encontrada. Posiblemente haya sido eliminada.</other_account_not_found>
         <no_messages_found>No se han encontrado mensajes en esta conversación con los filtros actuales.</no_messages_found>
         <actions>
