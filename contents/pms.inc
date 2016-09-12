@@ -141,9 +141,6 @@ $authors = $accounts_repository->get_multiple($author_ids);
                  onclick="open_conversation('<?= $author->user_name ?>', this)">
                 <img class="user_avatar" src="<?= $author->get_avatar_url() ?>">
                 <div class="meta_section upper">
-                    <span class="pull-right">
-                        <?= get_minimized_date($conversation->last_event_date) ?>
-                    </span>
                     <span class="meta_field">
                         <span class="fa fa-user"></span>
                         <?= $author->get_processed_display_name() ?>
@@ -151,7 +148,8 @@ $authors = $accounts_repository->get_multiple($author_ids);
                 </div>
                 <div class="meta_section">
                     <span class="meta_field dimmed">
-                        Aquí va la última línea :D
+                        <?= get_minimized_date($conversation->last_event_date) ?>
+                        (<?= time_elapsed_string($conversation->last_event_date) ?>)
                     </span>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 <?php
 namespace hng2_modules\contact;
 
+use hng2_base\module;
 use hng2_repository\abstract_record;
 
 class pm_record extends abstract_record
@@ -22,9 +23,18 @@ class pm_record extends abstract_record
     
     public function get_processed_contents()
     {
+        /**
+         * @var module[] $modules
+         */
         global $config, $modules;
         
-        $contents = nl2br($this->contents);
+        $contents = $this->contents;
+        $contents = preg_replace(
+            '@\b(https?://([-\w\.]+[-\w])+(:\d+)?(/([\%\w/_\.#-]*(\?\S+)?[^\.\s])?)?)\b@',
+            '<a href="$1" target="_blank">$1</a>',
+            $contents
+        );
+        $contents = nl2br($contents);
         $contents = convert_emojis($contents);
         
         $contents = convert_media_tags($contents);
