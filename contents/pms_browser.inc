@@ -201,8 +201,9 @@ $unread_ids = array();
                             <span class="pull-right">
                                 <?= get_selective_date($row->sent_date, true) ?>
                             </span>
-                            <a class="meta_field" href="<?= $config->full_root_path ?>/user/<?= $author->user_name ?>">
-                                <span class="fa fa-user"></span>
+                            <a class="meta_field user_display_name" data-user-level="<?= $author->level ?>"
+                               href="<?= $config->full_root_path ?>/user/<?= $author->user_name ?>">
+                                <span class="fa fa-user fa-fw"></span>
                                 <?= $author->get_processed_display_name() ?>
                             </a>
                         </div>
