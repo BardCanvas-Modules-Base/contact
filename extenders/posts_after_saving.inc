@@ -31,6 +31,7 @@ global $template, $language, $settings, $mem_cache, $account, $post, $old_post, 
 $mem_key = "contact.notification_sent:post={$post->id_post}";
 if( $comment_author->level >= config::MODERATOR_USER_LEVEL ) return;
 if( $mem_cache->get($mem_key) == "true" ) return;
+if( $post->status == "draft" ) return;
 
 $toolbox = new toolbox();
 $mem_ttl = 60*60;
