@@ -4,6 +4,7 @@ namespace hng2_modules\contact;
 use hng2_base\account_record;
 use hng2_media\media_repository;
 use hng2_modules\comments\comment_record;
+use hng2_modules\posts\post_record;
 use hng2_modules\posts\posts_repository;
 
 class toolbox
@@ -415,7 +416,12 @@ class toolbox
         /**
          * @var posts_repository $repository
          */
-        global $config, $modules, $settings, $post, $repository;
+        global $config, $modules, $settings, $repository;
+    
+        /**
+         * @var post_record $post
+         */
+        $post = $config->globals["contact:posts/post"];
         
         /**
          * @var account_record $post_author

@@ -36,7 +36,8 @@ if( $post->status == "draft" ) return;
 $toolbox = new toolbox();
 $mem_ttl = 60*60;
 
+$config->globals["contact:posts/post"]        = $post;
 $config->globals["contact:posts/post_author"] = $post->get_author();
 $toolbox->notify_mods_on_post_submission();
-unset( $config->globals["contact:posts/post_author"] );
+unset( $config->globals["contact:posts/post_author"], $config->globals["contact:posts/post"] );
 $mem_cache->set($mem_key, "true", 0, $mem_ttl);
