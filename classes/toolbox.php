@@ -246,7 +246,7 @@ class toolbox
             array(
                 $parent_author->display_name,
                 empty($comment->id_author)
-                    ? $comment_author->author_display_name
+                    ? $comment->author_display_name
                     : "<a href='{$config->full_root_url}/user/{$comment_author->user_name}'>$comment_author->display_name</a>",
                 $post_author->display_name,
                 "{$config->full_root_url}/{$post->id_post}",
@@ -315,7 +315,7 @@ class toolbox
             ),
             array(
                 empty($comment->id_author)
-                    ? $comment_author->author_display_name
+                    ? $comment->author_display_name
                     : "<a href='{$config->full_root_url}/user/{$comment_author->user_name}'>$comment_author->display_name</a>",
                 $parent_author->display_name,
                 $post_author->display_name,
@@ -387,7 +387,7 @@ class toolbox
             ),
             array(
                 empty($comment->id_author)
-                    ? $comment_author->author_display_name
+                    ? $comment->author_display_name
                     : "<a href='{$config->full_root_url}/user/{$comment_author->user_name}'>$comment_author->display_name</a>",
                 $parent_author->display_name,
                 $post_author->display_name,
