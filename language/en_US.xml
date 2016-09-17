@@ -394,8 +394,7 @@
         <p>
         
         <p>
-            <a href="mailto:{$sender_email}">{$sender_name}</a> has sent you a message
-            using {$website_name}'s contact form:
+            {$sender_name} has sent you a message using {$website_name}'s contact form:
         <p>
         
         <blockquote style="padding: 10px; background-color: whitesmoke; border-left: 5px solid gray;">
@@ -404,7 +403,7 @@
         
         <p>
             Feel free to reply as you usually do with your emails if you wish to directly
-            reply to {$recipient_email}.
+            reply to {$sender_email}.
         </p>
         
         <p>

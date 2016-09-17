@@ -390,7 +390,7 @@
         <p>
         
         <p>
-            <a href="mailto:{$sender_email}">{$sender_name}</a> te ha enviado un mensaje desde {$website_name}:
+            {$sender_name} te ha enviado un mensaje desde {$website_name}:
         <p>
         
         <blockquote style="padding: 10px; background-color: whitesmoke; border-left: 5px solid gray;">
@@ -399,7 +399,7 @@
         
         <p>
             Si deseas responderle, da click en "responder" en tu programa o servicio de correo.
-            La respuesta será enviada directamente a {$recipient_email}.
+            La respuesta será enviada directamente a {$sender_email}.
         </p>
         
         <p>
