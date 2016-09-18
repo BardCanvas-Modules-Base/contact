@@ -4,7 +4,7 @@ function send_pm(trigger, target_id_account, dialog_title)
     var url = $_FULL_ROOT_PATH
         + '/contact/render_pm_form.php'
         + '?target='  + target_id_account
-        + '&wasuuup=' + parseInt(Math.random() * 1000000000000000);
+        + '&wasuuup=' + wasuuup();
     
     $(trigger).block(blockUI_smallest_params);
     $.get(url, function(response)
