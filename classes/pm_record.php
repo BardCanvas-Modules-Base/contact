@@ -18,7 +18,8 @@ class pm_record extends abstract_record
     
     public function set_new_id()
     {
-        $this->id_pm = uniqid();
+        list($sec, $usec) = explode(".", microtime(true));
+        $this->id_pm = "1051" . $sec . sprintf("%05.0f", $usec) . mt_rand(1000, 9999);;
     }
     
     public function get_processed_contents()
