@@ -61,7 +61,7 @@ if( ! empty($_FILES["attachments"]) )
         
         $parts       = explode(".", $upload["name"]);
         $extension   = strtolower(array_pop($parts));
-        $name        = sanitize_file_name(implode(".", $parts));
+        $name        = wp_sanitize_filename(implode(".", $parts));
         $target_file = "$target_dir/$name.$extension";
         $date        = date("Ymd-His");
         
