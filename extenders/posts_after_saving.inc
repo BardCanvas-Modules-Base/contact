@@ -29,12 +29,14 @@ global $template, $language, $settings, $mem_cache, $account, $post, $old_post, 
 # Notification to mods/admins of saving
 
 $mem_key = "contact.notification_sent:post={$post->id_post}";
-if( $comment_author->level >= config::MODERATOR_USER_LEVEL ) return;
-if( $mem_cache->get($mem_key) == "true" ) return;
+$mem_ttl = 60*60;
+
+if( $account->level >= config::MODERATOR_USER_LEVEL ) return;
 if( $post->status == "draft" ) return;
+if( $mem_cache->get($mem_key) == "true" ) return;
+if( $post->creation_date > date("Y-m-d H:i:s", strtotime("$post->creation_date + $mem_ttl seconds")) ) return;
 
 $toolbox = new toolbox();
-$mem_ttl = 60*60;
 
 $config->globals["contact:posts/post"]        = $post;
 $config->globals["contact:posts/post_author"] = $post->get_author();

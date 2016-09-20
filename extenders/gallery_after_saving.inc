@@ -29,12 +29,14 @@ global $template, $language, $settings, $mem_cache, $account, $item, $old_item, 
 
 # Notification to mods/admins of saving directly on the media browser (embedded or not)
 
+$mem_ttl = 60*60;
 $mem_key = "contact.notification_sent:media_item={$item->id_media}";
-if( $comment_author->level >= config::MODERATOR_USER_LEVEL ) return;
+
+if( $account->level >= config::MODERATOR_USER_LEVEL ) return;
 if( $mem_cache->get($mem_key) == "true" ) return;
+if( $comment->creation_date > date("Y-m-d H:i:s", strtotime("$comment->creation_date + $mem_ttl seconds")) ) return;
 
 $toolbox = new toolbox();
-$mem_ttl = 60*60;
 
 $config->globals["contact:media/item_author"] = $item->get_author();
 $toolbox->notify_mods_on_media_submission();
