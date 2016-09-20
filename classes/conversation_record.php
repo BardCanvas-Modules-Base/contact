@@ -13,6 +13,6 @@ class conversation_record extends abstract_record
     
     public function set_new_id()
     {
-        $this->id_conversation = make_unique_id("43");
+        $this->id_conversation = make_unique_id("CO");
     }
 }

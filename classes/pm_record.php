@@ -18,7 +18,7 @@ class pm_record extends abstract_record
     
     public function set_new_id()
     {
-        $this->id_pm = make_unique_id("42");
+        $this->id_pm = make_unique_id("PM");
     }
     
     public function get_processed_contents()
