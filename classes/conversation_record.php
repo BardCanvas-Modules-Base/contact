@@ -13,7 +13,6 @@ class conversation_record extends abstract_record
     
     public function set_new_id()
     {
-        list($sec, $usec) = explode(".", microtime(true));
-        $this->id_conversation = "1052" . $sec . sprintf("%05.0f", $usec) . mt_rand(1000, 9999);;
+        $this->id_conversation = make_unique_id("43");
     }
 }
