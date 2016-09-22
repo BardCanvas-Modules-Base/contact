@@ -123,7 +123,7 @@ class pms_repository extends abstract_repository
         ");
         $this->last_query = $database->get_last_query();
         
-        $id = uniqid();
+        $id = make_unique_id("21");
         if( $res == 0 ) $database->exec("
             insert into pm_conversations set
             id_conversation = '$id',

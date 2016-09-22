@@ -19,10 +19,10 @@ use hng2_base\module;
 $tables = array(
     "pms" => "
         CREATE TABLE IF NOT EXISTS `pms` (
-          `id_pm`              VARCHAR(32) NOT NULL DEFAULT '',
-          `id_owner`           VARCHAR(32) NOT NULL DEFAULT '',
-          `id_sender`          VARCHAR(32) NOT NULL DEFAULT '',
-          `id_recipient`       VARCHAR(32) NOT NULL DEFAULT '',
+          `id_pm`              bigint unsigned not null default 0,
+          `id_owner`           bigint unsigned not null default 0,
+          `id_sender`          bigint unsigned not null default 0,
+          `id_recipient`       bigint unsigned not null default 0,
           `sent_date`          DATETIME NOT NULL,
           `opened_date`        DATETIME NOT NULL,
           `sender_archived`    tinyint unsigned not null default 0,
@@ -36,9 +36,9 @@ $tables = array(
     ",
     "pm_conversations" => "
         CREATE TABLE IF NOT EXISTS `pm_conversations` (
-          `id_conversation`    VARCHAR(32) NOT NULL DEFAULT '',
-          `id_owner`           VARCHAR(32) NOT NULL DEFAULT '',
-          `id_other`           VARCHAR(32) NOT NULL DEFAULT '',
+          `id_conversation`    bigint unsigned not null default 0,
+          `id_owner`           bigint unsigned not null default 0,
+          `id_other`           bigint unsigned not null default 0,
           `last_event_date`    DATETIME NOT NULL,
           `archived`           tinyint unsigned not null default 0,
         
