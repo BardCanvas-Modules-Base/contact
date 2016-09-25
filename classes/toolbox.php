@@ -64,7 +64,7 @@ class toolbox
                 "{$config->full_root_url}/{$post->id_post}",
             )
         );
-    
+        
         $body       = unindent($body);
         $recipients = array($post_author->display_name => $post_author->email);
         send_mail($subject, $body, $recipients);
@@ -126,7 +126,7 @@ class toolbox
                 "{$config->full_root_url}/{$post->id_post}",
             )
         );
-    
+        
         $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
@@ -136,7 +136,7 @@ class toolbox
     public function notify_mods_on_comment_for_review()
     {
         global $config, $modules, $settings, $post, $comment;
-    
+        
         /**
          * @var account_record $post_author
          * @var account_record $comment_author
@@ -157,7 +157,7 @@ class toolbox
                 $post->title,
             )
         );
-    
+        
         $body = replace_escaped_vars(
             $modules["contact"]->language->email_templates->comment_added->for_review->body,
             array(
@@ -191,7 +191,7 @@ class toolbox
                 "{$config->full_root_url}/{$post->id_post}",
             )
         );
-    
+        
         $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
@@ -331,7 +331,7 @@ class toolbox
                 $settings->get("engine.website_name"),
             )
         );
-    
+        
         $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
@@ -341,7 +341,7 @@ class toolbox
     public function notify_mods_on_reply_for_review()
     {
         global $config, $modules, $settings, $post, $comment;
-    
+        
         /**
          * @var comment_record $parent_comment
          * @var account_record $parent_author
@@ -352,7 +352,7 @@ class toolbox
         $parent_author  = $config->globals["contact:comments/parent_author"] ;
         $post_author    = $config->globals["contact:comments/post_author"]   ;
         $comment_author = $config->globals["contact:comments/comment_author"];
-    
+        
         $subject = replace_escaped_vars(
             $modules["contact"]->language->email_templates->comment_replied->for_review->subject,
             array(
@@ -366,7 +366,7 @@ class toolbox
                 $post->title,
             )
         );
-    
+        
         $body = replace_escaped_vars(
             $modules["contact"]->language->email_templates->comment_replied->for_review->body,
             array(
@@ -404,7 +404,7 @@ class toolbox
                 $settings->get("engine.website_name"),
             )
         );
-    
+        
         $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_comments", array($comment_author->id_account)
@@ -417,7 +417,7 @@ class toolbox
          * @var posts_repository $repository
          */
         global $config, $modules, $settings, $repository;
-    
+        
         /**
          * @var post_record $post
          */
@@ -511,7 +511,7 @@ class toolbox
                 $settings->get("engine.website_name"),
             )
         );
-    
+        
         $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_posts", array($post->id_author)
@@ -617,14 +617,14 @@ class toolbox
     
         $body = unindent($body);
         broadcast_mail_to_moderators(
-            $subject, $body, "@contact:moderator_emails_for_posts", array($item_author->id_account)
+            $subject, $body, "@contact:moderator_emails_for_media", array($item_author->id_account)
         );
     }
     
     public function notify_mods_on_address_blacklisting($address)
     {
         global $config, $modules, $settings, $account;
-    
+        
         $subject = replace_escaped_vars(
             $modules["contact"]->language->email_blacklisting->notification_to_mods->on_addition->subject,
             array(
