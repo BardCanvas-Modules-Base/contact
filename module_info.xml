@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <module>
     
-    <version>1.3.1</version>
+    <version>1.4</version>
     <group>System</group>
     <admin_only>true</admin_only>
     
@@ -30,7 +30,7 @@
         <!--<pre_footer></pre_footer>-->
         <!--<footer_top></footer_top>-->
         <!--<footer_bottom></footer_bottom>-->
-        <!--<post_footer></post_footer>-->
+        <post_footer>online_users_list_target.inc</post_footer>
         <!--<pre_eof></pre_eof>-->
         <!--<post_rendering></post_rendering>-->
     </template_includes>
