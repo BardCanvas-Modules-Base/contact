@@ -275,8 +275,8 @@ if( ! empty($unread_ids) )
             success:      process_pm_response
         });
         
-        if( '<?= (int) $offset ?>' == '0' || parseInt('<?= $_GET["previous_offset"] ?>') > parseInt('<?= $offset ?>') )
-            $.scrollTo('#last_pm', 250);
+        //if( '<?//= (int) $offset ?>//' == '0' || parseInt('<?//= $_GET["previous_offset"] ?>//') > parseInt('<?//= $offset ?>//') )
+        //    $.scrollTo('#last_pm', 250);
         
         $('img.pm_attachment').each(function()
         {
