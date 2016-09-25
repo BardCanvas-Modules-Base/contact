@@ -12,7 +12,8 @@
     </description>
     
     <menu_caption>Contacto</menu_caption>
-
+    
+    <users_online>Conectados</users_online>
     <pms_page_title>Tus mensajes privados</pms_page_title>
     <read_pms>Da click aquí para leer tus mensajes privados</read_pms>
     

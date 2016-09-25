@@ -45,7 +45,99 @@
         var $trigger = $('#unread_pms_count');
         var $counter = $trigger.find('.unread_count');
         
-        if( parseInt($counter.text()) != unread_pms )
+        var previous_count = parseInt($counter.text());
+        if( previous_count != unread_pms )
+        {
             update_pms_counter(unread_pms);
+            if( unread_pms > 0 ) play_notification_sound('message');
+        }
+    }
+</script>
+
+<!-- Hooks for the notifications getter: actions for prepared data -->
+<script type="text/javascript"
+        data-hooks-to="notifications-getter"
+        data-notifications-getter-hooking-function="update_online_users_list_hooker">
+    
+    var send_pm_dialog_title_template = '<?= $language->contact->pm->send_to ?>';
+    
+    /**
+     * @return {function}
+     */
+    function update_online_users_list_hooker()
+    {
+        return update_online_users_list;
+    }
+    
+    /**
+     * @param {object} data
+     */
+    function update_online_users_list(data)
+    {
+        var list = [];
+        
+        if( typeof data != 'undefined' )
+            if( typeof data.online_users != 'undefined' )
+                list = data.online_users;
+        
+        var $target  = $('#online_users_list');
+        var $trigger = $target.find('.trigger');
+        var $content = $target.find('.content');
+        
+        $trigger.find('.users_count').text(list.length);
+        
+        if(list.length == 0)
+        {
+            $content.html('');
+            $target.attr('data-state', 'collapsed');
+            $target.hide();
+            
+            return;
+        }
+        
+        var avatar = '';
+        var html = '';
+        for(var i in list)
+        {
+            var item = list[i];
+            
+            var div 
+                = '<div class="user" onclick="send_pm(this, \'%s\', \'%s\')" style="%s">'
+                +     '<span class="user_display_name" data-user-level="%s">'
+                +         '<span class="name">%s</span>'
+                +         '<span class="fa fa-user pull-right"></span>'
+                +     '</a>'
+                + '</div>'
+                ;
+            
+            avatar = item.avatar == '' ? '' : 'background-image: url(\'' + item.avatar + '\')';
+            var dialog_title = send_pm_dialog_title_template.replace('{$recipient}', item.display_name);
+            html = html + sprintf(div, item.id_account, dialog_title, avatar, item.level, item.display_name)
+            ;
+        }
+        
+        var actual_html = $content.data('actual_html');
+        if( actual_html == html ) return;
+        
+        $content.html(html);
+        $content.data('actual_html', html);
+        if( $target.not(':visible') ) $target.show('slide', {direction: 'down'});
+    }
+    
+    function toggle_online_users_list()
+    {
+        var $target  = $('#online_users_list');
+        var $content = $target.find('.content');
+        
+        if( $target.attr('data-state') == 'expanded' )
+        {
+            set_engine_pref('@contact:online_users_list_state', 'collapsed');
+            $target.attr('data-state', 'collapsed');
+        }
+        else
+        {
+            set_engine_pref('@contact:online_users_list_state', 'expanded');
+            $target.attr('data-state', 'expanded');
+        }
     }
 </script>

@@ -69,3 +69,78 @@ textarea.pm_input, #conversation_container .pm_items .pm_item {
 }
 
 img.pm_attachment { max-width: 100%; border: 1px solid black; }
+
+/* Online contacts list */
+
+#online_users_list {
+    z-index: 100;
+
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 24px;
+    width: auto;
+    min-height: 23px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+
+    color:            rgba(255, 255, 255, 0.75);;
+    background-color: #23282d;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 1);
+    -moz-box-shadow:    2px 2px 10px 1px rgba(0, 0, 0, 1);
+    box-shadow:         2px 2px 10px 1px rgba(0, 0, 0, 1);
+
+    white-space: nowrap;
+}
+
+#online_users_list .trigger       { padding: 3px 10px 3px 3px; cursor: pointer; font-weight: bold; line-height: 26px; min-height: 26px; }
+
+#online_users_list[data-state="collapsed"] span.expanded  { display: none; }
+#online_users_list[data-state="collapsed"] span.collapsed { display: inline-block; }
+#online_users_list[data-state="collapsed"] .content       { display: none; }
+
+#online_users_list[data-state="expanded"]  span.expanded  { display: inline-block; }
+#online_users_list[data-state="expanded"]  span.collapsed { display: none; }
+#online_users_list[data-state="expanded"]  .content       { display: block; }
+
+#online_users_list .content {
+    max-height: calc(90vh - 32px);
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+#online_users_list .content .user {
+    display: block;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: 2px 2px;
+    background-size: 28px 28px;
+    padding-left: 34px;
+    font-size: 12pt;
+    line-height: 32px;
+    height: 32px;
+    overflow: hidden;
+}
+
+#online_users_list .content .user .user_display_name {
+    display: inline-block;
+}
+
+#online_users_list .content .user .user_display_name .name {
+    display: inline-block;
+    max-width: 240px;
+    min-width: 140px;
+    overflow: hidden;
+}
+#online_users_list .content .user .user_display_name .fa-user {
+    font-size: 20px;
+    margin-top: 6px;
+    margin-right: 4px;
+}
+
+#online_users_list .trigger:hover       ,
+#online_users_list .content .user:hover { color: white; background-color: #535556; }
