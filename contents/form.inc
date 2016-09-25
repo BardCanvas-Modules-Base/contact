@@ -136,7 +136,7 @@ $current_module->load_extensions("form", "presets");
     
     <? if( ! $account->_exists ): ?>
         <div class="field">
-            <?= recaptcha_get_html($settings->get("engine.recaptcha_public_key")) ?>
+            <?= recaptcha_get_html($settings->get("engine.recaptcha_public_key"), null, $_SERVER["HTTPS"]) ?>
         </div>
     <? endif; ?>
     

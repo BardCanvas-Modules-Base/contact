@@ -93,8 +93,6 @@ img.pm_attachment { max-width: 100%; border: 1px solid black; }
     -webkit-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 1);
     -moz-box-shadow:    2px 2px 10px 1px rgba(0, 0, 0, 1);
     box-shadow:         2px 2px 10px 1px rgba(0, 0, 0, 1);
-
-    white-space: nowrap;
 }
 
 #online_users_list .trigger       { padding: 3px 10px 3px 3px; cursor: pointer; font-weight: bold; line-height: 26px; min-height: 26px; }
