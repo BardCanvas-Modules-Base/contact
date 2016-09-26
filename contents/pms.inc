@@ -148,7 +148,7 @@ $authors = $accounts_repository->get_multiple($author_ids);
                 </div>
                 <div class="meta_section">
                     <span class="meta_field dimmed">
-                        <?= get_minimized_date($conversation->last_event_date) ?>
+                        <?= time_mini_string($conversation->last_event_date) ?>
                         (<?= time_elapsed_string($conversation->last_event_date) ?>)
                     </span>
                 </div>

@@ -462,12 +462,12 @@ class toolbox
             $lis = "";
             foreach($other_posts_from_segment as $other_post)
             {
-                $published   = get_minimized_date($other_post->publishing_date);
+                $published   = time_mini_string($other_post->publishing_date);
                 $link        = $other_post->get_permalink(true);
                 $author_link = "{$config->full_root_url}/user/{$other_post->author_user_name}";
-                $lis .= "<li><a href='$author_link'>{$other_post->author_display_name}</a>
-                             [$published • {$other_post->creation_ip}]:
-                             <a href='{$link}'>{$other_post->title}</a></li>";
+                $lis        .= "<li><a href='$author_link'>{$other_post->author_display_name}</a>
+                                    [$published • {$other_post->creation_ip}]:
+                                    <a href='{$link}'>{$other_post->title}</a></li>";
             }
             $other_posts_from_segment = $lis;
         }
@@ -567,7 +567,7 @@ class toolbox
             $lis = "";
             foreach($other_from_segment as $other_item)
             {
-                $published = get_minimized_date($other_item->publishing_date);
+                $published = time_mini_string($other_item->publishing_date);
                 $link      = $other_item->get_page_url(true);
                 $lis      .= "
                     <span style='display: inline-block; width: 150px; vertical-align: top; margin: 10px;'>
