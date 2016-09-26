@@ -129,9 +129,8 @@ img.pm_attachment { max-width: 100%; border: 1px solid black; }
 }
 
 #online_users_list .content .user .user_display_name .name {
-    display: inline-block;
-    max-width: 240px;
-    min-width: 140px;
+    display:  inline-block;
+    width:    180px;
     overflow: hidden;
 }
 #online_users_list .content .user .user_display_name .fa-user {
