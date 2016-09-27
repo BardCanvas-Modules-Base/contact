@@ -16,6 +16,7 @@
     <users_online>Conectados</users_online>
     <pms_page_title>Tus mensajes privados</pms_page_title>
     <read_pms>Da click aquí para leer tus mensajes privados</read_pms>
+    <visit_user_profile>Perfil de {$user}</visit_user_profile>
     
     <settings_data>
         <title>Forma de contacto</title>

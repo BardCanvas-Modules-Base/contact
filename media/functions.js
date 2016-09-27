@@ -1,10 +1,12 @@
 
-function send_pm(trigger, target_id_account, dialog_title)
+function send_pm(trigger, target_id_account, target_display_name)
 {
     var url = $_FULL_ROOT_PATH
         + '/contact/render_pm_form.php'
         + '?target='  + target_id_account
         + '&wasuuup=' + wasuuup();
+    
+    var dialog_title = _PM_DIALOG_TITLE_TEMPLATE.replace('{$recipient}', target_display_name);
     
     $(trigger).block(blockUI_smallest_params);
     $.get(url, function(response)

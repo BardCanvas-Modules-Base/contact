@@ -13,6 +13,8 @@
 <script type="text/javascript">
     var submit_caption = '<?= $language->submit ?>';
     var cancel_caption = '<?= $language->cancel ?>';
+    
+    var _PM_DIALOG_TITLE_TEMPLATE = '<?= $language->contact->pm->send_to ?>';
 </script>
 
 <script type="text/javascript" src="<?= $config->full_root_path ?>/contact/media/functions~v<?=$config->scripts_version?>.js"></script>
@@ -58,8 +60,6 @@
 <script type="text/javascript"
         data-hooks-to="notifications-getter"
         data-notifications-getter-hooking-function="update_online_users_list_hooker">
-    
-    var send_pm_dialog_title_template = '<?= $language->contact->pm->send_to ?>';
     
     /**
      * @return {function}
@@ -110,9 +110,13 @@
                 + '</div>'
                 ;
             
-            avatar = item.avatar == '' ? '' : 'background-image: url(\'' + item.avatar + '\')';
-            var dialog_title = send_pm_dialog_title_template.replace('{$recipient}', item.display_name);
-            html = html + sprintf(div, item.id_account, dialog_title, avatar, item.level, item.display_name)
+            avatar_markup = item.avatar == '' ? '' : 'background-image: url(\'' + item.avatar + '\')';
+            html = html + sprintf(
+                    div,
+                    item.id_account, item.display_name, avatar_markup,
+                    item.level,
+                    item.display_name
+                )
             ;
         }
         

@@ -28,10 +28,22 @@ if( empty($_GET["target"]) ) die($current_module->language->messages->invalid_ta
 
 $recipient = $accounts_repository->get($_GET["target"]);
 if( is_null($recipient) ) die($current_module->language->messages->invalid_target);
+
+$display_name = "
+    <span class=\"user_display_name\" data-user-level=\"{$recipient->level}\">
+        <span class=\"fa fa-user fa-fw\"></span>{$recipient->get_processed_display_name()}
+    </span>
+";
 ?>
 
 <form name="send_pm_form" id="send_pm_form" method="post" action="<?= $config->full_root_path ?>/contact/send_pm.php">
     <input type="hidden" name="target" value="<?= $recipient->user_name ?>">
-    <textarea name="content" class="pm_input" style="height: 125px; width: 100%;"
+    <textarea name="content" class="pm_input" style="height: 100px; width: 100%;"
               placeholder="<?= $current_module->language->send_pm_form->content->placeholder ?>"></textarea>
+    <div style="margin-top: 5px;">
+        <a href="<?= "{$config->full_root_path}/user/{$recipient->user_name}" ?>">
+            <span class="fa fa-caret-right"></span>
+            <?= replace_escaped_vars($current_module->language->visit_user_profile, '{$user}', $display_name) ?>
+        </a>
+    </div>
 </form>
