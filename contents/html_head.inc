@@ -18,6 +18,7 @@
 </script>
 
 <script type="text/javascript" src="<?= $config->full_root_path ?>/contact/media/functions~v<?=$config->scripts_version?>.js"></script>
+<script type="text/javascript" src="<?= $config->full_root_path ?>/lib/emojione-2.2.5/lib/js/emojione.js"></script>
 <link rel="stylesheet" type="text/css" href="<?= $config->full_root_path ?>/contact/media/styles~v<?=$config->scripts_version?>.css">
 
 <!-- Hooks for the notifications getter: actions for prepared data -->
@@ -115,7 +116,7 @@
                     div,
                     item.id_account, item.display_name, avatar_markup,
                     item.level,
-                    item.display_name
+                    emojione.unicodeToImage(item.display_name)
                 )
             ;
         }
