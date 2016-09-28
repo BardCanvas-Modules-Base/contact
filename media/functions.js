@@ -21,8 +21,8 @@ function send_pm(trigger, target_id_account, target_display_name)
         $('body').append(html);
         $('#send_pm_form').ajaxForm({
             target:       '#temp_pm_target',
-            beforeSubmit: prepare_pm_submission,
-            success:      process_pm_response
+            beforeSubmit: prepare_dialoged_pm_submission,
+            success:      process_dialoged_pm_response
         });
         
         var width = $(window).width() - 20;
@@ -52,12 +52,12 @@ function send_pm(trigger, target_id_account, target_display_name)
     });
 }
 
-function prepare_pm_submission()
+function prepare_dialoged_pm_submission()
 {
     $('#temp_pm_dialog').block(blockUI_medium_params);
 }
 
-function process_pm_response(response)
+function process_dialoged_pm_response(response)
 {
     var $dialog = $('#temp_pm_dialog');
     $dialog.unblock();
