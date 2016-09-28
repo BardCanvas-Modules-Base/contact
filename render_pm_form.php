@@ -38,7 +38,7 @@ $display_name = "
 
 <form name="send_pm_form" id="send_pm_form" method="post" action="<?= $config->full_root_path ?>/contact/send_pm.php">
     <input type="hidden" name="target" value="<?= $recipient->user_name ?>">
-    <textarea name="content" class="pm_input" style="height: 100px; width: 100%;"
+    <textarea name="content" class="pm_input" style="height: 95px; width: 100%;"
               placeholder="<?= $current_module->language->send_pm_form->content->placeholder ?>"></textarea>
     <div style="margin-top: 5px;">
         <a href="<?= "{$config->full_root_path}/user/{$recipient->user_name}" ?>">
