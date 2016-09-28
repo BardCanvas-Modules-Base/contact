@@ -135,19 +135,18 @@ class pms_repository extends abstract_repository
     }
     
     /**
-     * @param $id_owner
+     * @param     $id_owner
+     * @param int $archived_flag 0:active 1: archived
      *
      * @return conversation_record[]
-     * 
-     * @throws \Exception
      */
-    public function get_conversations($id_owner)
+    public function get_conversations($id_owner, $archived_flag = 0)
     {
         global $database;
         
         $res = $database->query("
             select * from pm_conversations where id_owner = '$id_owner'
-            and archived = '0'
+            and archived = '$archived_flag'
             order by last_event_date desc
         ");
         $this->last_query = $database->get_last_query();
@@ -158,6 +157,21 @@ class pms_repository extends abstract_repository
             $return[] = new conversation_record($row);
         
         return $return;
+    }
+    
+    public function get_conversations_count($id_owner, $archived_flag = 0)
+    {
+        global $database;
+        
+        $res = $database->query("
+            select count(*) as `count` from pm_conversations
+            where id_owner = '$id_owner'
+            and archived = '$archived_flag'
+        ");
+        $this->last_query = $database->get_last_query();
+        $row = $database->fetch_object($res);
+        
+        return $row->count;
     }
     
     /**
@@ -183,5 +197,49 @@ class pms_repository extends abstract_repository
         $this->last_query = $query;
         
         return $database->exec($query);
+    }
+    
+    public function delete_conversation_by_parnters($id_owner, $id_other)
+    {
+        global $database;
+        
+        $database->exec("
+            delete from pm_conversations where
+            id_owner = '$id_owner' and
+            id_other = '$id_other'
+        ");
+        
+        $database->exec("
+            delete from pms where
+            id_owner     = '$id_owner' and
+            (
+                (id_sender = '$id_owner' and id_recipient = '$id_other')
+                or
+                (id_sender = '$id_other' and id_recipient = '$id_owner')
+            )
+            
+        ");
+    }
+    
+    public function archive_conversation_by_partners($id_owner, $id_other)
+    {
+        global $database;
+        
+        $database->exec("
+            update pm_conversations
+            set archived = 1
+            where id_owner = '$id_owner'
+            and   id_other = '$id_other'
+        ");
+    }
+    
+    public function restore_archived_conversations($id_owner)
+    {
+        global $database;
+        
+        $database->exec("
+            update pm_conversations set archived = '0' where id_owner = '$id_owner'
+        ");
+        $this->last_query = $database->get_last_query();
     }
 }

@@ -17,6 +17,15 @@
     <pms_page_title>Your Private Messages</pms_page_title>
     <read_pms>Click here to read your Private Messages</read_pms>
     <visit_user_profile>{$user}'s profile</visit_user_profile>
+    <archive>Archive</archive>
+    <delete>Delete...</delete>
+    <delete_conversation_confirmation><![CDATA[
+        Note: only your side of the conversation will be deleted.
+        This action may take a few seconds, and once triggered,
+        it cannot be stopped or undone.
+         
+        Do you want to continue?
+    ]]></delete_conversation_confirmation>
     
     <settings_data>
         <title>Contact form</title>
@@ -458,10 +467,17 @@
             <a href='{$link}'>Click here to check it.</a>
         ]]></received_pm>
         <no_conversations>You don't have any private conversations registered.</no_conversations>
+        <no_conversations_restore_archive><![CDATA[
+            You have no unseen conversations and {$count} archived conversations.<br><br>
+            <span class="pseudo_link" onclick="restore_archived_conversations()">
+                <span class="fa fa-play fa-fw"></span>Restore all archives
+            </span>
+        ]]></no_conversations_restore_archive>
         <cannot_create_dir>Can't create directory "{$dir}". Please notify the webmaster!</cannot_create_dir>
         <invalid_uploaded_file>The file "{$file}" isn't a valid upload. Please try again.</invalid_uploaded_file>
         <invalid_pm_attachment>Invalid attachment type. Please upload a png/jpg/jpeg/gif image.</invalid_pm_attachment>
         <cannot_move_attachment>Can't move "{$file}" to "{$target}"! Please notify the webmaster!</cannot_move_attachment>
+        <missing_target>You didn't specify a valid/existing conversation recipient.</missing_target>
     </messages>
     
     <email_blacklisting>

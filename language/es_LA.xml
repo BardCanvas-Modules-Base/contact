@@ -17,6 +17,15 @@
     <pms_page_title>Tus mensajes privados</pms_page_title>
     <read_pms>Da click aquí para leer tus mensajes privados</read_pms>
     <visit_user_profile>Perfil de {$user}</visit_user_profile>
+    <archive>Archivar</archive>
+    <delete>Eliminar...</delete>
+    <delete_conversation_confirmation><![CDATA[
+        Nota: sólo tu lado de la conversación será eliminado.
+        Esta acción puede tomar algunos segundos, y una vez iniciada
+        no puede detenerse o deshacerse.
+         
+        ¿Deseas continuar?
+    ]]></delete_conversation_confirmation>
     
     <settings_data>
         <title>Forma de contacto</title>
@@ -454,10 +463,17 @@
             <a href='{$link}'>Da click aquí para verlo</a>
         ]]></received_pm>
         <no_conversations>No tienes niguna conversación privada registrada.</no_conversations>
+        <no_conversations_restore_archive><![CDATA[
+            No tienes ninguna conversación abierta y tienes {$count} archivadas.<br><br>
+            <span class="pseudo_link" onclick="restore_archived_conversations()">
+                <span class="fa fa-play fa-fw"></span>Restaurar todas las archivadas
+            </span>
+        ]]></no_conversations_restore_archive>
         <cannot_create_dir>No se puede crear el directorio "{$dir}". Favor de notificar al personal de soporte.</cannot_create_dir>
         <invalid_uploaded_file>El arcvhivo "{$file}" no es una subida válida. Favor de intentar de nuevo.</invalid_uploaded_file>
         <invalid_pm_attachment>Tipo de archivo inválido. Por favor sube una imagen png/jpg/jpeg/gif.</invalid_pm_attachment>
         <cannot_move_attachment>¡No se puede mover "{$file}" a "{$target}"! Favor de notificar al personal de soporte.</cannot_move_attachment>
+        <missing_target>No has especificado un destinatario válido o existente.</missing_target>
     </messages>
     
     <email_blacklisting>

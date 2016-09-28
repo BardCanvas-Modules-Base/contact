@@ -17,16 +17,48 @@ $accounts_repository = new accounts_repository();
 $pms_repository      = new pms_repository();
 
 $conversations = $pms_repository->get_conversations($account->id_account);
+$archived      = $pms_repository->get_conversations_count($account->id_account, 1);
 
 $author_ids = array();
 foreach($conversations as $conversation) $author_ids[] = $conversation->id_other;
 $authors = $accounts_repository->get_multiple($author_ids);
 ?>
 
+<script type="text/javascript">
+    function restore_archived_conversations()
+    {
+        var url    = $_FULL_ROOT_PATH + '/contact/scripts/restore_archived_conversations.php';
+        var params = {
+            'wasuuup': wasuuup()
+        };
+        
+        $.blockUI(blockUI_default_params);
+        $.get(url, params, function(response)
+        {
+            if( response != 'OK' )
+            {
+                alert(response);
+                $.unblockUI();
+                return;
+            }
+            
+            location.reload();
+        });
+    }
+</script>
+
 <? if( count($conversations) == 0 ): ?>
-    <div class="framed_content state_highlight" style="margin-top: 0;">
+    <div class="framed_content state_highlight" style="margin-top: 0; padding: 20px;">
         <span class="fa fa-info-circle"></span>
-        <?= $current_module->language->messages->no_conversations ?>
+        
+        <?
+        if( $archived == 0 )
+            echo $current_module->language->messages->no_conversations;
+        else
+            echo replace_escaped_vars(
+                $current_module->language->messages->no_conversations_restore_archive, '{$count}', $archived
+            );
+        ?>
     </div>
     <? return; ?>
 <? endif; ?>
@@ -40,7 +72,7 @@ $authors = $accounts_repository->get_multiple($author_ids);
         
         var $viewer = $('#pms_viewer');
         var $conversations = $viewer.find('.conversations');
-    
+        
         $conversations.find('.conversation_item').toggleClass('selected', false);
         $(trigger).toggleClass('selected', true);
         if( $conversations.hasClass('expanded') ) toggle_conversations_area();
@@ -51,6 +83,58 @@ $authors = $accounts_repository->get_multiple($author_ids);
         $form.find('input[name="order"]').val('1');
         $form.find('input[name="with"]').val(other_user_id);
         $form.submit();
+    }
+    
+    function delete_conversation(other_user_name, archive_only)
+    {
+        if( typeof archive_only == 'undefined' ) archive_only = false;
+        
+        if( ! archive_only )
+        {
+            var message = $('#delete_conversation_confirmation').text();
+            if( ! confirm(message) ) return;
+        }
+        
+        var url    = $_FULL_ROOT_PATH + '/contact/scripts/delete_conversation.php';
+        var params = {
+            'with':         other_user_name,
+            'archive_only': archive_only ? 'true' : 'false',
+            'wasuuup':      wasuuup()
+        };
+        
+        var $viewport     = $('#pms_viewer');
+        var $user_trigger = $viewport.find(sprintf(
+            '.conversations .conversation_item[data-with="%s"]',
+            other_user_name
+        ));
+        
+        $viewport.block(blockUI_medium_params);
+        $.get(url, params, function(response)
+        {
+            if( response != 'OK' )
+            {
+                alert(response);
+                $viewport.unblock();
+                return;
+            }
+            
+            $viewport.unblock();
+            var conversations_count = $viewport.find('.conversations .conversation_item').length - 1;
+            if( conversations_count <= 0 )
+            {
+                top.location.reload();
+            }
+            else
+            {
+                var $next_user = $viewport.find(sprintf(
+                    '.conversations .conversation_item:not([data-with="%s"]):visible:first',
+                    other_user_name
+                ));
+                
+                $user_trigger.fadeOut('fast', function() { $(this).remove(); });
+                open_conversation($next_user.attr('data-with'), $next_user);
+            }
+        });
     }
     
     function reset_pms_filter()
@@ -138,6 +222,7 @@ $authors = $accounts_repository->get_multiple($author_ids);
             ?>
             
             <div class="meta_box conversation_item <?= $selected ?> clearfix"
+                 data-with="<?= $author->user_name ?>"
                  onclick="open_conversation('<?= $author->user_name ?>', this)">
                 <img class="user_avatar" src="<?= $author->get_avatar_url() ?>">
                 <div class="meta_section upper">
@@ -170,3 +255,4 @@ $authors = $accounts_repository->get_multiple($author_ids);
 </div>
 
 <div id="pm_paged_form_target" style="display: none;"></div>
+<div id="delete_conversation_confirmation" style="display: none;"><?= unindent( $current_module->language->delete_conversation_confirmation ) ?></div>

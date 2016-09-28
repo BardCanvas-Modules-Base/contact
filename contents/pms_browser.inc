@@ -88,12 +88,24 @@ else if( is_null($other_account) ) $style = "display: none;";
     
     <?= replace_escaped_vars($current_module->language->pms_nav->title, '{$with}', $other_account->get_processed_display_name()) ?>
     
-    <a href="#send_pm_inlined_form">
-        <span class="fa fa-paper-plane"></span>
+    <br>
+    
+    <button onclick="$.scrollTo('a[name=send_pm_inlined_form]', 500)">
+        <span class="fa fa-reply"></span>
         <?= count($records) == 0 
             ? $current_module->language->pms_nav->actions->send_pm 
             : $current_module->language->pms_nav->actions->send_reply ?>
-    </a>
+    </button>
+    
+    <button onclick="delete_conversation('<?= trim(stripslashes($_GET["with"])) ?>', true)">
+        <span class="fa fa-times"></span>
+        <?= $current_module->language->archive ?>
+    </button>
+    
+    <button onclick="delete_conversation('<?= trim(stripslashes($_GET["with"])) ?>')">
+        <span class="fa fa-trash"></span>
+        <?= $current_module->language->delete ?>
+    </button>
 </h2>
 
 <div class="filtering clearfix" style="<?= $style ?>">
