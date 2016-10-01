@@ -16,4 +16,5 @@ if( ! $account->_exists ) throw_fake_401();
 
 $template->page_contents_include = "pms.inc";
 $template->set_page_title($current_module->language->pms_page_title);
+$template->set("no_right_sidebar", true);
 include "{$template->abspath}/main.php";
