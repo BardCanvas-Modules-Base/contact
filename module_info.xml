@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <module>
     
-    <version>2.0</version>
+    <version>2.1</version>
     <group>BardCanvas</group>
     <admin_only>false</admin_only>
     
@@ -38,27 +38,5 @@
     <extension_areas_info><![CDATA[
         Form: presets.
     ]]></extension_areas_info>
-    
-    <extends_to>
-        <comments>
-            <add_comment>
-                <after_saving priority="900">extenders/comments_after_saving.inc</after_saving>
-                <after_saving_for_review priority="900">extenders/comments_after_saving_for_review.inc</after_saving_for_review>
-            </add_comment>
-            <save_comment>
-                <after_saving priority="900">extenders/comments_after_saving.inc</after_saving>
-            </save_comment>
-        </comments>
-        <posts>
-            <save_post>
-                <after_saving priority="900">extenders/posts_after_saving.inc</after_saving>
-            </save_post>
-        </posts>
-        <gallery>
-            <save_item>
-                <after_saving priority="900">extenders/gallery_after_saving.inc</after_saving>
-            </save_item>
-        </gallery>
-    </extends_to>
     
 </module>
