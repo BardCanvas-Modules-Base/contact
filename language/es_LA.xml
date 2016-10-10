@@ -8,24 +8,10 @@
     <display_name>Subsistema de contacto</display_name>
     <icon>fa-envelope-o</icon>
     <description>
-        Componentes para enviar correo a los usuarios, contactar a los administradores y enviar mensajes personales
+        Componentes para enviar correo a los usuarios y contactar a los administradores
     </description>
     
     <menu_caption>Contacto</menu_caption>
-    
-    <users_online>Conectados</users_online>
-    <pms_page_title>Tus mensajes privados</pms_page_title>
-    <read_pms>Da click aquí para leer tus mensajes privados</read_pms>
-    <visit_user_profile>Perfil de {$user}</visit_user_profile>
-    <archive>Archivar</archive>
-    <delete>Eliminar...</delete>
-    <delete_conversation_confirmation><![CDATA[
-        Nota: sólo tu lado de la conversación será eliminado.
-        Esta acción puede tomar algunos segundos, y una vez iniciada
-        no puede detenerse o deshacerse.
-         
-        ¿Deseas continuar?
-    ]]></delete_conversation_confirmation>
     
     <settings_data>
         <title>Forma de contacto</title>
@@ -426,26 +412,6 @@
         </p>
     ]]></body>
     
-    <send_pm_form>
-        <content>
-            <placeholder>Por favor escribe tu mensaje de texto.</placeholder>
-        </content>
-    </send_pm_form>
-    
-    <pms_nav>
-        <title>Conversación con {$with}</title>
-        <search_placeholder>Buscar en esta conversación</search_placeholder>
-        <select_conversation>Selecciona una conversación</select_conversation>
-        <other_account_not_found>Disculpa, pero la otra cuenta no ha sido encontrada. Posiblemente haya sido eliminada.</other_account_not_found>
-        <no_messages_found>No se han encontrado mensajes en esta conversación con los filtros actuales.</no_messages_found>
-        <actions>
-            <send_pm>Mensaje Privado</send_pm>
-            <send_reply>Responder</send_reply>
-            <add_photo>Anexar foto</add_photo>
-            <send>Enviar</send>
-        </actions>
-    </pms_nav>
-    
     <messages>
         <invalid_target>Disculpa, pero el destinatario es inválido o no existe en la base de datos.</invalid_target>
         <empty_subject>Especifica un asunto para el mensaje.</empty_subject>
@@ -457,23 +423,6 @@
         <invalid_captcha>Clave de captcha inválida. Por favor intenta de nuevo.</invalid_captcha>
         <sent_ok>Mensaje enviado con éxito. La página se recargará ahora.</sent_ok>
         <user_cannot_be_emailed>Disculpa, pero este usuario no acepta correos.</user_cannot_be_emailed>
-        <pm_sent_ok>Mensaje privado enviado a {$recipient}.</pm_sent_ok>
-        <received_pm><![CDATA[
-            ¡Has recibido un mensaje privado de  {$sender}!<br>
-            <a href='{$link}'>Da click aquí para verlo</a>
-        ]]></received_pm>
-        <no_conversations>No tienes niguna conversación privada registrada.</no_conversations>
-        <no_conversations_restore_archive><![CDATA[
-            No tienes ninguna conversación abierta y tienes {$count} archivadas.<br><br>
-            <span class="pseudo_link" onclick="restore_archived_conversations()">
-                <span class="fa fa-play fa-fw"></span>Restaurar todas las archivadas
-            </span>
-        ]]></no_conversations_restore_archive>
-        <cannot_create_dir>No se puede crear el directorio "{$dir}". Favor de notificar al personal de soporte.</cannot_create_dir>
-        <invalid_uploaded_file>El arcvhivo "{$file}" no es una subida válida. Favor de intentar de nuevo.</invalid_uploaded_file>
-        <invalid_pm_attachment>Tipo de archivo inválido. Por favor sube una imagen png/jpg/jpeg/gif.</invalid_pm_attachment>
-        <cannot_move_attachment>¡No se puede mover "{$file}" a "{$target}"! Favor de notificar al personal de soporte.</cannot_move_attachment>
-        <missing_target>No has especificado un destinatario válido o existente.</missing_target>
     </messages>
     
     <email_blacklisting>

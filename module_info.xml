@@ -3,7 +3,7 @@
     
     <version>1.5.2</version>
     <group>BardCanvas</group>
-    <admin_only>true</admin_only>
+    <admin_only>false</admin_only>
     
     <working_flags>
         <install>true</install>
@@ -12,14 +12,14 @@
         <disable>true</disable>
     </working_flags>
     
-    <php_includes>
+    <!--<php_includes>-->
         <!--<bootstrap></bootstrap>-->
-        <notifications_getter>extenders/notifications_getter_hook.inc</notifications_getter>
-    </php_includes>
+        <!--<notifications_getter></notifications_getter>-->
+    <!--</php_includes>-->
     
     <template_includes>
         <!--<pre_rendering></pre_rendering>-->
-        <html_head>html_head.inc</html_head>
+        <!--<html_head>html_head.inc</html_head>-->
         <!--<pre_header></pre_header>-->
         <!--<header_top></header_top>-->
         <header_menu>header_buttons.inc</header_menu>
@@ -30,13 +30,12 @@
         <!--<pre_footer></pre_footer>-->
         <!--<footer_top></footer_top>-->
         <!--<footer_bottom></footer_bottom>-->
-        <post_footer>online_users_list_target.inc</post_footer>
+        <!--<post_footer>online_users_list_target.inc</post_footer>-->
         <!--<pre_eof></pre_eof>-->
         <!--<post_rendering></post_rendering>-->
     </template_includes>
     
     <extension_areas_info><![CDATA[
-        PM Record Class: Get Processed Contents.
         Form: presets.
     ]]></extension_areas_info>
     
