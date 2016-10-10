@@ -57,7 +57,7 @@ class toolbox
                 $comment->content,
                 "{$config->full_root_url}/{$post->id_post}?reply_to={$comment->id_comment}#comment_{$comment->id_comment}",
                 "{$config->full_root_url}/contact/?action=report&type=comment&id={$comment->id_comment}",
-                "{$config->full_root_url}/contact/scripts/blacklist_email.php?address="
+                "{$config->full_root_url}/security/scripts/blacklist_email.php?address="
                     . urlencode(encrypt($post_author->email, $config->encryption_key)),
                 "{$config->full_root_url}/accounts/preferences.php",
                 $settings->get("engine.website_name"),
@@ -255,7 +255,7 @@ class toolbox
                 $comment->content,
                 "{$config->full_root_url}/{$post->id_post}?reply_to={$comment->id_comment}#comment_{$comment->id_comment}",
                 "{$config->full_root_url}/contact/?action=report&type=comment&id={$comment->id_comment}",
-                "{$config->full_root_url}/contact/scripts/blacklist_email.php?address="
+                "{$config->full_root_url}/security/scripts/blacklist_email.php?address="
                     . urlencode(encrypt($parent_author->email, $config->encryption_key)),
                 "{$config->full_root_url}/accounts/preferences.php",
                 $settings->get("engine.website_name"),
@@ -618,57 +618,6 @@ class toolbox
         $body = unindent($body);
         broadcast_mail_to_moderators(
             $subject, $body, "@contact:moderator_emails_for_media", array($item_author->id_account)
-        );
-    }
-    
-    public function notify_mods_on_address_blacklisting($address)
-    {
-        global $config, $modules, $settings, $account;
-        
-        $subject = replace_escaped_vars(
-            $modules["contact"]->language->email_blacklisting->notification_to_mods->on_addition->subject,
-            array(
-                '{$website_name}',
-                '{$blacklisted_address}',
-            ),
-            array(
-                $settings->get("engine.website_name"),
-                $address,
-            )
-        );
-        
-        $body = replace_escaped_vars(
-            $modules["contact"]->language->email_blacklisting->notification_to_mods->on_addition->body,
-            array(
-                '{$blacklisted_address}',
-                '{$current_user_display_name}',
-                '{$ip}',
-                '{$hostname}',
-                '{$location}',
-                '{$isp}',
-                '{$browser}',
-                '{$remove_blacklist}',
-                '{$preferences}',
-                '{$website_name}',
-            ),
-            array(
-                $address,
-                $account->_exists ? $account->get_processed_display_name() : "—",
-                get_user_ip(),
-                gethostbyaddr(get_user_ip()),
-                forge_geoip_location("", true),
-                get_geoip_location_data("", "isp"),
-                $_SERVER["HTTP_USER_AGENT"],
-                "{$config->full_root_url}/contact/scripts/blacklist_email.php?remove=true&address="
-                    . urlencode(encrypt($address, $config->encryption_key)),
-                "{$config->full_root_url}/accounts/preferences.php",
-                $settings->get("engine.website_name"),
-            )
-        );
-    
-        $body = unindent($body);
-        broadcast_mail_to_moderators(
-            $subject, $body, "@contact:moderator_emails_for_posts", array($account->id_account)
         );
     }
 }
