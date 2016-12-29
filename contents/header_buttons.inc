@@ -21,10 +21,11 @@ if( $settings->get("modules:contact.hide_on_main_menu") != "true" )
     $template->add_menu_item(
         trim($this_module->language->menu_caption),
         "
-    <a class='main_menu_item {$added_class}' data-module='contact' href='{$config->full_root_path}/contact/'>
-        <span class='fa {$this_module->language->icon}'></span>
-        {$this_module->language->menu_caption}
-    </a>
-    "
+        <a class='main_menu_item {$added_class}' data-module='contact' href='{$config->full_root_path}/contact/'>
+            <span class='fa {$this_module->language->icon}'></span>
+            {$this_module->language->menu_caption}
+        </a>
+        ",
+        900
     );
 }
