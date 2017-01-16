@@ -21,10 +21,15 @@ $sender_email = $account->_exists ? $account->email                          : "
 $readonly     = $account->_exists ? "readonly"                               : "";
 $target       = empty($_GET["target"]) ? null : $accounts_repository->get($_GET["target"]);
 
+$config->globals["@contact:sender_name"]  = $sender_name;
+$config->globals["@contact:sender_email"] = $sender_email;
 $config->globals["@contact:subject"]     = "";
 $config->globals["@contact:content"]     = "";
 $config->globals["@contact:show_errors"] = array();
 $current_module->load_extensions("form", "presets");
+$sender_name  = $config->globals["@contact:sender_name"];
+$sender_email = $config->globals["@contact:sender_email"];
+unset( $config->globals["@contact:sender_name"], $config->globals["@contact:sender_email"] );
 ?>
 
 <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/jquery.exptextarea.js"></script>

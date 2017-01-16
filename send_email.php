@@ -54,6 +54,18 @@ if( ! empty($_POST["target"]) )
     if( ! empty($target->alt_email) ) $recipients["{$target->display_name} (2)"] = $target->alt_email;
 }
 
+$config->globals["@contact:sender"] = $sender;
+$current_module->load_extensions("send_email", "pre_send");
+$sender = $config->globals["@contact:sender"];
+unset( $config->globals["@contact:sender"] );
+
+$ip = $location = "N/A";
+if( $target->level >= config::AUTHOR_USER_LEVEL )
+{
+    $ip       = get_user_ip();
+    $location = forge_geoip_location( $ip );
+}
+
 $body = replace_escaped_vars(
     $current_module->language->body,
     array(
@@ -79,8 +91,8 @@ $body = replace_escaped_vars(
         $settings->get("engine.mail_sender_name"),
         $settings->get("engine.website_name"),
         date("Y-m-d H:i:s"),
-        get_user_ip(),
-        forge_geoip_location( get_user_ip() ),
+        $ip,
+        $location,
     )
 );
 
