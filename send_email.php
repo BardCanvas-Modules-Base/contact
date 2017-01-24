@@ -5,10 +5,13 @@
  * @package    HNG2
  * @subpackage contact
  * @author     Alejandro Caballero - lava.caballero@gmail.com
+ * 
+ * @var module $current_module
  */
 
 use hng2_base\accounts_repository;
 use hng2_base\config;
+use hng2_base\module;
 
 include "../config.php";
 include "../includes/bootstrap.inc";
@@ -39,6 +42,9 @@ $sender     = $account->_exists
             ? array( $account->display_name => $account->email )
             : array( stripslashes($_POST["name"]) => stripslashes($_POST["email"]) );
 
+$ip       = get_user_ip();
+$location = forge_geoip_location( $ip );
+
 if( ! empty($_POST["target"]) )
 {
     $target = $accounts_repository->get($_POST["target"]);
@@ -52,19 +58,14 @@ if( ! empty($_POST["target"]) )
     
     $recipients = array($target->display_name => $target->email);
     if( ! empty($target->alt_email) ) $recipients["{$target->display_name} (2)"] = $target->alt_email;
+    
+    if( $target->level >= config::AUTHOR_USER_LEVEL ) $ip = $location = "N/A";
 }
 
 $config->globals["@contact:sender"] = $sender;
 $current_module->load_extensions("send_email", "pre_send");
 $sender = $config->globals["@contact:sender"];
 unset( $config->globals["@contact:sender"] );
-
-$ip = $location = "N/A";
-if( $target->level >= config::AUTHOR_USER_LEVEL )
-{
-    $ip       = get_user_ip();
-    $location = forge_geoip_location( $ip );
-}
 
 $body = replace_escaped_vars(
     $current_module->language->body,
