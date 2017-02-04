@@ -92,6 +92,7 @@
             Fecha de envío: {$date}<br>
             Host de origen: {$origin_host}<br>
             Ubicación de origen: {$origin_location}<br>
+            Llamada desde: {$referer}<br>
         </p>
     ]]></body>
     
@@ -106,6 +107,7 @@
         <invalid_captcha>Clave de captcha inválida. Por favor intenta de nuevo.</invalid_captcha>
         <sent_ok>Mensaje enviado con éxito. La página se recargará ahora.</sent_ok>
         <user_cannot_be_emailed>Disculpa, pero este usuario no acepta correos.</user_cannot_be_emailed>
+        <missing_posting_token>No puedes saltarte la forma de contacto. El envío directo no está permitido.</missing_posting_token>
     </messages>
     
 </language>

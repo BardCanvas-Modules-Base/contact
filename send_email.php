@@ -17,6 +17,14 @@ include "../config.php";
 include "../includes/bootstrap.inc";
 include "../lib/recaptcha-php-1.11/recaptchalib.php";
 
+if( ! $account->_exists )
+{
+    session_start();
+    
+    if( empty($_SESSION["{$config->website_key}_contact_form_token"]) )
+        die($current_module->language->messages->missing_posting_token);
+}
+
 $accounts_repository = new accounts_repository();
 
 header("Content-Type: text/plain; charset=utf-8");
@@ -44,6 +52,7 @@ $sender     = $account->_exists
 
 $ip       = get_user_ip();
 $location = forge_geoip_location( $ip );
+$referer  = $_SERVER["HTTP_REFERER"];
 
 if( ! empty($_POST["target"]) )
 {
@@ -59,7 +68,7 @@ if( ! empty($_POST["target"]) )
     $recipients = array($target->display_name => $target->email);
     if( ! empty($target->alt_email) ) $recipients["{$target->display_name} (2)"] = $target->alt_email;
     
-    if( $target->level >= config::AUTHOR_USER_LEVEL ) $ip = $location = "N/A";
+    if( $target->level >= config::AUTHOR_USER_LEVEL ) $ip = $location = $referer = "N/A";
 }
 
 $config->globals["@contact:sender"] = $sender;
@@ -81,6 +90,7 @@ $body = replace_escaped_vars(
         '{$date}',
         '{$origin_host}',
         '{$origin_location}',
+        '{$referer}',
     ),
     array(
         key($recipients),
@@ -94,6 +104,7 @@ $body = replace_escaped_vars(
         date("Y-m-d H:i:s"),
         $ip,
         $location,
+        $referer,
     )
 );
 
@@ -101,3 +112,6 @@ $res = send_mail($subject, $body, $recipients, $sender);
 
 if( $res != "OK" ) echo $res;
 else               echo "OK:{$current_module->language->messages->sent_ok}";
+
+if( ! empty($_SESSION["{$config->website_key}_contact_form_token"]) )
+    unset( $_SESSION["{$config->website_key}_contact_form_token"] );
