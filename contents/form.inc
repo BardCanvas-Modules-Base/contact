@@ -44,14 +44,6 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
     </div>
 <? endif; ?>
 
-<? if( $settings->get("engine.recaptcha_private_key") == "" || $settings->get("engine.recaptcha_public_key") == "" ): ?>
-    <div class="framed_content state_ko">
-        <span class="fa fa-warning"></span>
-        <?= $language->errors->recaptcha_not_configured ?>
-    </div>
-    <? return; ?>
-<? endif; ?>
-
 <? if( empty($_GET["target"]) && $settings->get("engine.webmaster_address") == "" ): ?>
     <div class="framed_content state_ko">
         <span class="fa fa-warning"></span>
@@ -139,7 +131,7 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
         </div>
     </div>
     
-    <? if( ! $account->_exists ): ?>
+    <? if( ! $account->_exists && $settings->get("engine.recaptcha_public_key") != "" ): ?>
         <div class="field">
             <?= recaptcha_get_html($settings->get("engine.recaptcha_public_key"), null, $_SERVER["HTTPS"]) ?>
         </div>

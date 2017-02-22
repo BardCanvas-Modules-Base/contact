@@ -35,10 +35,13 @@ if( ! $account->_exists )
     if( empty($_POST["email"]) ) die($current_module->language->messages->empty_email);
     
     if( filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) === false )
-        die($current_module->language->messages->invalid_email);
+        die($current_module->language->messages->invalid_mail);
     
-    $res = recaptcha_check_answer($settings->get("engine.recaptcha_private_key"), get_remote_address(), $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
-    if( ! $res->is_valid ) die($current_module->language->messages->invalid_captcha);
+    if( $settings->get("engine.recaptcha_private_key") != "" )
+    {
+        $res = recaptcha_check_answer($settings->get("engine.recaptcha_private_key"), get_remote_address(), $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+        if( ! $res->is_valid ) die($current_module->language->messages->invalid_captcha);
+    }
 }
 
 if( empty($_POST["subject"]) ) die($current_module->language->messages->empty_subject);
