@@ -97,17 +97,17 @@
     ]]></body>
     
     <messages>
-        <invalid_target>Disculpa, pero el destinatario es inválido o no existe en la base de datos.</invalid_target>
-        <empty_subject>Especifica un asunto para el mensaje.</empty_subject>
-        <self_messages_not_allowed>No puedes enviarte mensajes a ti mismo/a.</self_messages_not_allowed>
-        <content>El mensaje no puede estar vacío.</content>
+        <missing_posting_token>No puedes saltarte la forma de contacto. El envío directo no está permitido.</missing_posting_token>
         <empty_name>Por favor escribe tu nombre.</empty_name>
         <empty_email>Por favor escribe tu correo y asegúrate de que puedes recibir mensajes en tu buzón.</empty_email>
         <invalid_mail>FAvor de proveer una dirección de correo válida.</invalid_mail>
         <invalid_captcha>Clave de captcha inválida. Por favor intenta de nuevo.</invalid_captcha>
-        <sent_ok>Mensaje enviado con éxito. La página se recargará ahora.</sent_ok>
+        <empty_subject>Especifica un asunto para el mensaje.</empty_subject>
+        <empty_content>El mensaje no puede estar vacío.</empty_content>
+        <invalid_target>Disculpa, pero el destinatario es inválido o no existe en la base de datos.</invalid_target>
+        <self_messages_not_allowed>No puedes enviarte mensajes a ti mismo/a.</self_messages_not_allowed>
         <user_cannot_be_emailed>Disculpa, pero este usuario no acepta correos.</user_cannot_be_emailed>
-        <missing_posting_token>No puedes saltarte la forma de contacto. El envío directo no está permitido.</missing_posting_token>
+        <sent_ok>Mensaje enviado con éxito. La página se recargará ahora.</sent_ok>
     </messages>
     
 </language>

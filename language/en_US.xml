@@ -98,17 +98,17 @@
     ]]></body>
     
     <messages>
-        <invalid_target>Sorry, but the target account is either invalid or it doesn't exist in the database.</invalid_target>
-        <empty_subject>Please type a subject for your message.</empty_subject>
-        <self_messages_not_allowed>Thou cannot send emails to thyself.</self_messages_not_allowed>
-        <content>You should specify some contents for your message.</content>
+        <missing_posting_token>You can't bypass the contact form. Direct sending is not allowed.</missing_posting_token>
         <empty_name>Please type your name.</empty_name>
         <empty_email>Please type your email and make sure you can receive messages there.</empty_email>
         <invalid_mail>Please provide a valid email address.</invalid_mail>
         <invalid_captcha>Invalid captcha response. Please type the captcha code as it shows.</invalid_captcha>
-        <sent_ok>Message has been successfully sent. The page will now reload.</sent_ok>
+        <empty_subject>Please type a subject for your message.</empty_subject>
+        <empty_content>You should specify some contents for your message.</empty_content>
+        <invalid_target>Sorry, but the target account is either invalid or it doesn't exist in the database.</invalid_target>
+        <self_messages_not_allowed>Thou cannot send emails to thyself.</self_messages_not_allowed>
         <user_cannot_be_emailed>Sorry, but this user doesn't accept emails.</user_cannot_be_emailed>
-        <missing_posting_token>You can't bypass the contact form. Direct sending is not allowed.</missing_posting_token>
+        <sent_ok>Message has been successfully sent. The page will now reload.</sent_ok>
     </messages>
     
 </language>
