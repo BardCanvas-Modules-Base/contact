@@ -116,5 +116,7 @@ $res = send_mail($subject, $body, $recipients, $sender);
 if( $res != "OK" ) echo $res;
 else               echo "OK:{$current_module->language->messages->sent_ok}";
 
+$current_module->load_extensions("send_email", "post_send");
+
 if( ! empty($_SESSION["{$config->website_key}_contact_form_token"]) )
     unset( $_SESSION["{$config->website_key}_contact_form_token"] );
