@@ -13,6 +13,8 @@ include "../config.php";
 include "../includes/bootstrap.inc";
 include "../lib/recaptcha-php-1.11/recaptchalib.php";
 
+$current_module->load_extensions("index", "pre_start");
+
 $accounts_repository = new accounts_repository();
 
 $title = empty($_GET["target"])
