@@ -1,6 +1,10 @@
 
 # Contact Module Change Log
 
+## [2.1.8] - 2017-04-11
+
+- Added extension point at the top the index page for pre-start overrides.
+
 ## [2.1.7] - 2017-04-04
 
 - Added extension point after sending an email.

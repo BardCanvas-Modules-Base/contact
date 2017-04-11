@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <module>
     
-    <version>2.1.7</version>
+    <version>2.1.8</version>
     <group>modules_base</group>
     <admin_only>false</admin_only>
     
@@ -36,6 +36,7 @@
     </template_includes>
     
     <extension_areas_info><![CDATA[
+        Index: pre-start.
         Form: presets.
         Send email: pre and post send.
     ]]></extension_areas_info>
