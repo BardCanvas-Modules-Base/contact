@@ -22,6 +22,19 @@
             ]]></description>
             <type>yes/no</type>
         </specs>
+        <specs key="csrf_for_guests">
+            <title>Enable CSRF protection for guests</title>
+            <description><![CDATA[
+                When enabled, this option will set a hidden token in the contact form
+                so automated submissions from spam bots are avoided.<br>
+                <i class="fa fa-warning"></i>
+                <b>Important:</b> some proxys or Data Saving capabilities in some browsers
+                may prevent authentic users to use the contact form.
+                It is recommended to keep this option disabled unless
+                you're constantly hit by spammy messages using the contact form.
+            ]]></description>
+            <type>boolean</type>
+        </specs>
     </settings_data>
     
     <engine_prefs>
@@ -98,7 +111,13 @@
     ]]></body>
     
     <messages>
-        <missing_posting_token>You can't bypass the contact form. Direct sending is not allowed.</missing_posting_token>
+        <missing_posting_token><![CDATA[
+            You can't bypass the contact form.
+            Direct sending is not allowed.
+            Note: if you're using some proxy or data saver
+            (Opera Turbo or Google Chrome's data saver)
+            You may need to disable it and try again.
+        ]]></missing_posting_token>
         <empty_name>Please type your name.</empty_name>
         <empty_email>Please type your email and make sure you can receive messages there.</empty_email>
         <invalid_mail>Please provide a valid email address.</invalid_mail>

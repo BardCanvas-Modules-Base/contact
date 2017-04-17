@@ -22,6 +22,19 @@
             ]]></description>
             <type>yes/no</type>
         </specs>
+        <specs key="csrf_for_guests">
+            <title>Activar protección CSRF para invitados</title>
+            <description><![CDATA[
+                Cuando esta opción se activa, se pondrá un token escondido en la forma de contacto
+                para evitar envíos automáticos por robots de spam.<br>
+                <i class="fa fa-warning"></i>
+                <b>Importante:</b> algunos proxys o capacidad de ahorro de datos en navegadores
+                puede impedir a verdaderos usuarios anónimos usar la forma de contacto.
+                Es recomendable desactivar esta opción a menos que estés recibiendo constantemente
+                mensajes de spam.
+            ]]></description>
+            <type>boolean</type>
+        </specs>
     </settings_data>
     
     <engine_prefs>
@@ -97,7 +110,13 @@
     ]]></body>
     
     <messages>
-        <missing_posting_token>No puedes saltarte la forma de contacto. El envío directo no está permitido.</missing_posting_token>
+        <missing_posting_token><![CDATA[
+            No puedes saltarte la forma de contacto.
+            El envío directo no está permitido.
+            Nota: si estás usando algún proxy o ahorrador de datos
+            (Opera Turbo o el reductor de Google Chrome), deberás
+            desactivarlo e intentar de nuevo.
+        ]]></missing_posting_token>
         <empty_name>Por favor escribe tu nombre.</empty_name>
         <empty_email>Por favor escribe tu correo y asegúrate de que puedes recibir mensajes en tu buzón.</empty_email>
         <invalid_mail>FAvor de proveer una dirección de correo válida.</invalid_mail>

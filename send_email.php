@@ -17,12 +17,12 @@ include "../config.php";
 include "../includes/bootstrap.inc";
 include "../lib/recaptcha-php-1.11/recaptchalib.php";
 
-if( ! $account->_exists )
+if( ! $account->_exists && $settings->get("modules:contact.csrf_for_guests") == "true" )
 {
     session_start();
     
     if( empty($_SESSION["{$config->website_key}_contact_form_token"]) )
-        die($current_module->language->messages->missing_posting_token);
+        die(unindent($current_module->language->messages->missing_posting_token));
 }
 
 $accounts_repository = new accounts_repository();

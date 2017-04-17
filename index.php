@@ -22,7 +22,7 @@ $title = empty($_GET["target"])
        : $current_module->language->title->targeted;
 $title = replace_escaped_vars($title, '{$site_name}', $settings->get("engine.website_name"));
 
-if( ! $account->_exists )
+if( ! $account->_exists && $settings->get("modules:contact.csrf_for_guests") == "true" )
 {
     session_start();
     $_SESSION["{$config->website_key}_contact_form_token"] = uniqid();
