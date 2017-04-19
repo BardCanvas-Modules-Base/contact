@@ -1,6 +1,10 @@
 
 # Contact Module Change Log
 
+## [2.1.9] - 2017-04-19
+
+- Changed CSRF protection to optional, disabled by default.
+
 ## [2.1.8] - 2017-04-11
 
 - Added extension point at the top the index page for pre-start overrides.
