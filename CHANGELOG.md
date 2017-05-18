@@ -1,6 +1,10 @@
 
 # Contact Module Change Log
 
+## [2.2.0] - 2017-05-17
+
+- Added option to avoid anonymous guests to send email to registered users.
+
 ## [2.1.9] - 2017-04-19
 
 - Changed CSRF protection to optional, disabled by default.
