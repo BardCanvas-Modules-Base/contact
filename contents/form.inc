@@ -61,6 +61,16 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
 <? endif; ?>
 
 <? if( ! is_null($target)
+       && $settings->get("modules:contact.no_anonymous_emails") == "true"
+       && ! $account->_exists ): ?>
+    <div class="framed_content state_ko">
+        <span class="fa fa-warning"></span>
+        <?= $current_module->language->messages->guests_cant_email ?>
+    </div>
+    <? return; ?>
+<? endif; ?>
+
+<? if( ! is_null($target)
        && $target->get_engine_pref("@contact:allow_emails") == "false"
        && $account->level < config::MODERATOR_USER_LEVEL ): ?>
     <div class="framed_content state_ko">

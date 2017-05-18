@@ -22,6 +22,14 @@
             ]]></description>
             <type>yes/no</type>
         </specs>
+        <specs key="no_anonymous_emails">
+            <title>Sólo usuarios registrados pueden contactar a otros</title>
+            <description><![CDATA[
+                Activa esta opción si deseas impedir que invitados anónimos puedan
+                usar la forma de contacto con usuarios registrados.
+            ]]></description>
+            <type>boolean</type>
+        </specs>
         <specs key="csrf_for_guests">
             <title>Activar protección CSRF para invitados</title>
             <description><![CDATA[
@@ -127,6 +135,7 @@
         <self_messages_not_allowed>No puedes enviarte mensajes a ti mismo/a.</self_messages_not_allowed>
         <user_cannot_be_emailed>Disculpa, pero este usuario no acepta correos.</user_cannot_be_emailed>
         <sent_ok>Mensaje enviado con éxito. La página se recargará ahora.</sent_ok>
+        <guests_cant_email>Lo sentimos, pero invitados anónimos no pueden enviar correos a usuarios registrados.</guests_cant_email>
     </messages>
     
 </language>

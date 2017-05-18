@@ -22,6 +22,14 @@
             ]]></description>
             <type>yes/no</type>
         </specs>
+        <specs key="no_anonymous_emails">
+            <title>Only registered users can contact other users</title>
+            <description><![CDATA[
+                Enable this option if you want to avoid anonymous guests to send email
+                to registered users.
+            ]]></description>
+            <type>boolean</type>
+        </specs>
         <specs key="csrf_for_guests">
             <title>Enable CSRF protection for guests</title>
             <description><![CDATA[
@@ -128,6 +136,7 @@
         <self_messages_not_allowed>Thou cannot send emails to thyself.</self_messages_not_allowed>
         <user_cannot_be_emailed>Sorry, but this user doesn't accept emails.</user_cannot_be_emailed>
         <sent_ok>Message has been successfully sent. The page will now reload.</sent_ok>
+        <guests_cant_email>Sorry, but anonymous guests can't email registered users.</guests_cant_email>
     </messages>
     
 </language>
