@@ -12,6 +12,7 @@ use hng2_base\accounts_repository;
 include "../config.php";
 include "../includes/bootstrap.inc";
 include "../lib/recaptcha-php-1.11/recaptchalib.php";
+session_start();
 
 $current_module->load_extensions("index", "pre_start");
 
@@ -23,10 +24,7 @@ $title = empty($_GET["target"])
 $title = replace_escaped_vars($title, '{$site_name}', $settings->get("engine.website_name"));
 
 if( ! $account->_exists && $settings->get("modules:contact.csrf_for_guests") == "true" )
-{
-    session_start();
     $_SESSION["{$config->website_key}_contact_form_token"] = uniqid();
-}
 
 $template->set_page_title($title);
 $template->set("title", $title);
