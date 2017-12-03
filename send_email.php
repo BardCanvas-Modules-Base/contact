@@ -12,11 +12,19 @@
 use hng2_base\accounts_repository;
 use hng2_base\config;
 use hng2_base\module;
+use hng2_modules\mobile_controller\toolbox;
 
 include "../config.php";
 include "../includes/bootstrap.inc";
 include "../lib/recaptcha-php-1.11/recaptchalib.php";
 session_start();
+
+if( $modules["mobile_controller"]->enabled && ! empty($_REQUEST["bcm_platform"]) )
+{
+    $toolbox = new toolbox();
+    $toolbox->output_type = "HTML";
+    $toolbox->open_session();
+}
 
 if( ! $account->_exists && $settings->get("modules:contact.csrf_for_guests") == "true" )
     if( empty($_SESSION["{$config->website_key}_contact_form_token"]) )
@@ -111,7 +119,9 @@ $body = replace_escaped_vars(
 $res = send_mail($subject, $body, $recipients, $sender);
 
 if( $res != "OK" ) echo $res;
-else               echo "OK:{$current_module->language->messages->sent_ok}";
+else               echo $_REQUEST["stop_on_success"] == "true" ?
+                        "OK:{$current_module->language->messages->sent_close}" :
+                        "OK:{$current_module->language->messages->sent_ok}";
 
 $current_module->load_extensions("send_email", "post_send");
 

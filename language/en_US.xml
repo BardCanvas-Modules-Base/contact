@@ -136,7 +136,9 @@
         <self_messages_not_allowed>Thou cannot send emails to thyself.</self_messages_not_allowed>
         <user_cannot_be_emailed>Sorry, but this user doesn't accept emails.</user_cannot_be_emailed>
         <sent_ok>Message has been successfully sent. The page will now reload.</sent_ok>
+        <sent_close>Message has been successfully sent. Please close this window.</sent_close>
         <guests_cant_email>Sorry, but anonymous guests can't email registered users.</guests_cant_email>
+        <bcm_unavailable>Sorry, but BardCanvas Mobile support is not available for this website.</bcm_unavailable>
     </messages>
     
 </language>

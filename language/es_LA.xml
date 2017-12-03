@@ -135,7 +135,9 @@
         <self_messages_not_allowed>No puedes enviarte mensajes a ti mismo/a.</self_messages_not_allowed>
         <user_cannot_be_emailed>Disculpa, pero este usuario no acepta correos.</user_cannot_be_emailed>
         <sent_ok>Mensaje enviado con éxito. La página se recargará ahora.</sent_ok>
+        <sent_close>Mensaje enviado con éxito. Por favor cierra esta ventana.</sent_close>
         <guests_cant_email>Lo sentimos, pero invitados anónimos no pueden enviar correos a usuarios registrados.</guests_cant_email>
+        <bcm_unavailable>Lo sentimos, pero el soporte para BardCanvas Móvil no está disponible para este sitio web.</bcm_unavailable>
     </messages>
     
 </language>

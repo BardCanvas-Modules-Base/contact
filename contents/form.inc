@@ -10,7 +10,8 @@
  * @var accounts_repository $accounts_repository
  * 
  * $_GET params:
- * @param "target" user_name of target account
+ * @param "target"          user_name of target account
+ * @param "stop_on_success" if true, no reload will be sent.
  */
 
 use hng2_base\accounts_repository;
@@ -85,6 +86,11 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
 <form name="contact_form" id="contact_form" method="post" action="<?= $config->full_root_path ?>/contact/send_email.php">
     
     <input type="hidden" name="action" value="send">
+    <input type="hidden" name="stop_on_success" value="<?= trim(htmlspecialchars(stripslashes($_REQUEST["stop_on_success"]))) ?>">
+    <? if( ! empty($_REQUEST["bcm_platform"]) ): ?>
+        <input type="hidden" name="bcm_platform"     value="<?= trim(htmlspecialchars(stripslashes($_REQUEST["bcm_platform"]))) ?>">
+        <input type="hidden" name="bcm_access_token" value="<?= trim(htmlspecialchars(stripslashes($_REQUEST["bcm_access_token"]))) ?>">
+    <? endif; ?>
     
     <? if( ! is_null($target) ): ?>
         <div class="field">
@@ -184,8 +190,15 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
             if( Recaptcha ) Recaptcha.reload();
             return;
         }
-        
+    
         message = response.replace('OK:', '');
+        if( $form.find('input[name="stop_on_success"]').val() === 'true' )
+        {
+            $form.html(message);
+            
+            return;
+        }
+        
         alert(message);
         location.reload();
     }
