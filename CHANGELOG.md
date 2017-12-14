@@ -1,6 +1,11 @@
 
 # Contact Module Change Log
 
+## [2.3.0] - 2017-12-14
+
+- Added simplified support for BardCanvas Mobile.
+- Added flag to avoid triklet-based redirections when available.
+
 ## [2.2.1] - 2017-05-20
 
 - Added session initializing to help extenders.
