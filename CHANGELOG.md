@@ -1,6 +1,10 @@
 
 # Contact Module Change Log
 
+## [2.4.0] - 2018-03-16
+
+- Upgraded Google ReCaptcha lib to v2
+
 ## [2.3.0] - 2017-12-14
 
 - Added simplified support for BardCanvas Mobile.
