@@ -129,7 +129,9 @@
         <empty_name>Please type your name.</empty_name>
         <empty_email>Please type your email and make sure you can receive messages there.</empty_email>
         <invalid_mail>Please provide a valid email address.</invalid_mail>
-        <invalid_captcha>Invalid captcha response. Please type the captcha code as it shows.</invalid_captcha>
+        <invalid_captcha>Invalid Captcha. Please try again
+            .</invalid_captcha>
+        <captcha_api_error>Couldn't verify Captcha: {$error}</captcha_api_error>
         <empty_subject>Please type a subject for your message.</empty_subject>
         <empty_content>You should specify some contents for your message.</empty_content>
         <invalid_target>Sorry, but the target account is either invalid or it doesn't exist in the database.</invalid_target>

@@ -149,7 +149,9 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
     
     <? if( ! $account->_exists && $settings->get("engine.recaptcha_public_key") != "" ): ?>
         <div class="field">
-            <?= recaptcha_get_html($settings->get("engine.recaptcha_public_key"), null, $_SERVER["HTTPS"]) ?>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <div class="g-recaptcha" data-sitekey="<?= $settings->get("engine.recaptcha_public_key") ?>"></div>
+            <br>
         </div>
     <? endif; ?>
     
@@ -187,7 +189,6 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
             alert( response );
             $form.unblock();
             
-            if( Recaptcha ) Recaptcha.reload();
             return;
         }
     

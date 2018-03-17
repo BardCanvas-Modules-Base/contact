@@ -16,7 +16,6 @@ include "../includes/bootstrap.inc";
 if( ! $modules["mobile_controller"]->enabled )
     die(trim($current_module->language->messages->bcm_unavailable));
 
-include "../lib/recaptcha-php-1.11/recaptchalib.php";
 session_start();
 
 $config->globals["prevent_triklet_pre_start_redirections"] = true;

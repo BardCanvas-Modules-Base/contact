@@ -128,7 +128,8 @@
         <empty_name>Por favor escribe tu nombre.</empty_name>
         <empty_email>Por favor escribe tu correo y asegúrate de que puedes recibir mensajes en tu buzón.</empty_email>
         <invalid_mail>FAvor de proveer una dirección de correo válida.</invalid_mail>
-        <invalid_captcha>Clave de captcha inválida. Por favor intenta de nuevo.</invalid_captcha>
+        <invalid_captcha>Captcha inválido. Por favor intenta de nuevo.</invalid_captcha>
+        <captcha_api_error>No se ha logrado validar el Captcha: {$error}</captcha_api_error>
         <empty_subject>Especifica un asunto para el mensaje.</empty_subject>
         <empty_content>El mensaje no puede estar vacío.</empty_content>
         <invalid_target>Disculpa, pero el destinatario es inválido o no existe en la base de datos.</invalid_target>

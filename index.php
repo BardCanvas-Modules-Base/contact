@@ -11,7 +11,6 @@ use hng2_base\accounts_repository;
 
 include "../config.php";
 include "../includes/bootstrap.inc";
-include "../lib/recaptcha-php-1.11/recaptchalib.php";
 session_start();
 
 $current_module->load_extensions("index", "pre_start");
