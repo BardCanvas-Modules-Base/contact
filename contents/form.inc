@@ -89,6 +89,7 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
     <input type="hidden" name="stop_on_success" value="<?= trim(htmlspecialchars(stripslashes($_REQUEST["stop_on_success"]))) ?>">
     <? if( ! empty($_REQUEST["bcm_platform"]) ): ?>
         <input type="hidden" name="bcm_platform"     value="<?= trim(htmlspecialchars(stripslashes($_REQUEST["bcm_platform"]))) ?>">
+        <input type="hidden" name="bcm_version"      value="<?= trim(htmlspecialchars(stripslashes($_REQUEST["bcm_version"]))) ?>">
         <input type="hidden" name="bcm_access_token" value="<?= trim(htmlspecialchars(stripslashes($_REQUEST["bcm_access_token"]))) ?>">
     <? endif; ?>
     
