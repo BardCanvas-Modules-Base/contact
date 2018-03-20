@@ -1,6 +1,10 @@
 
 # Contact Module Change Log
 
+## [2.4.1] - 2018-03-19
+
+- Passed BCM version on web requests.
+
 ## [2.4.0] - 2018-03-16
 
 - Upgraded Google ReCaptcha lib to v2
