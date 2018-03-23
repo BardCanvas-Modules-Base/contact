@@ -148,6 +148,8 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
         </div>
     </div>
     
+    <? $current_module->load_extensions("form", "extra_fields"); ?>
+    
     <? if( ! $account->_exists && $settings->get("engine.recaptcha_public_key") != "" ): ?>
         <div class="field">
             <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -157,7 +159,7 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
     <? endif; ?>
     
     <p>
-        <button type="submit">
+        <button type="submit" class="big_form_submit_button">
             <?= $language->submit ?>
             <span class="fa fa-play"></span>
         </button>

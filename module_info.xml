@@ -37,8 +37,8 @@
     
     <extension_areas_info><![CDATA[
         Index: pre-start.
-        Form: presets.
-        Send email: pre and post send.
+        Form: presets, extra fields.
+        Send email: pre-send, pre-actual-send, post-send.
     ]]></extension_areas_info>
     
 </module>

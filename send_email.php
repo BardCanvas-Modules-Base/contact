@@ -139,12 +139,18 @@ $body = replace_escaped_vars(
     )
 );
 
-$res = send_mail($subject, $body, $recipients, $sender);
+$config->globals["@contact:proceed_with_send"] = true;
+$current_module->load_extensions("send_email", "pre_actual_send");
 
-if( $res != "OK" ) echo $res;
-else               echo $_REQUEST["stop_on_success"] == "true" ?
-                        "OK:{$current_module->language->messages->sent_close}" :
-                        "OK:{$current_module->language->messages->sent_ok}";
+if( $config->globals["@contact:proceed_with_send"] )
+{
+    $res = send_mail($subject, $body, $recipients, $sender);
+    
+    if( $res != "OK" ) echo $res;
+    else               echo $_REQUEST["stop_on_success"] == "true" ?
+                            "OK:{$current_module->language->messages->sent_close}" :
+                            "OK:{$current_module->language->messages->sent_ok}";
+}
 
 $current_module->load_extensions("send_email", "post_send");
 
