@@ -67,7 +67,7 @@
     </title>
     
     <fields>
-        <target>Objetivo:</target>
+        <target>Destino:</target>
         <name>Tu nombre:</name>
         <email>
             <caption>Tu correo:</caption>
