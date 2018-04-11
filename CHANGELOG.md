@@ -1,6 +1,11 @@
 
 # Contact Module Change Log
 
+## [2.4.2] - 2018-04-11
+
+- Added extension points.
+- Changed some language captions.
+
 ## [2.4.1] - 2018-03-19
 
 - Passed BCM version on web requests.
