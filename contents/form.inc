@@ -95,13 +95,19 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
     
     <? if( ! is_null($target) ): ?>
         <div class="field">
-            <div class="caption">
-                <?= $current_module->language->fields->target ?>
-            </div>
-            <div class="input">
-                <input type="hidden" name="target" value="<?= $target->id_account ?>">
-                <input type="text" readonly value="<?= htmlspecialchars($target->display_name) ?>">
-            </div>
+            <?
+            $config->globals["@contact:target_override"] = false;
+            $current_module->load_extensions("form", "target_override");
+            
+            if( ! $config->globals["@contact:target_override"] ): ?>
+                <div class="caption">
+                    <?= $current_module->language->fields->target ?>
+                </div>
+                <div class="input">
+                        <input type="hidden" name="target" value="<?= $target->id_account ?>">
+                        <input type="text" readonly value="<?= htmlspecialchars($target->display_name) ?>">
+                </div>
+            <? endif; ?>
         </div>
     <? endif; ?>
     
@@ -142,9 +148,10 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
     <div class="field">
         <div class="caption">
             <?= $current_module->language->fields->content ?>
+            <? $current_module->load_extensions("form", "content_caption_extras"); ?>
         </div>
         <div class="input">
-            <textarea name="content" class="tinymce_minimal"><?= htmlspecialchars($config->globals["@contact:content"]) ?></textarea>
+            <textarea name="content" id="message_contents" class="tinymce_minimal"><?= htmlspecialchars($config->globals["@contact:content"]) ?></textarea>
         </div>
     </div>
     
@@ -219,3 +226,5 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
         $('.expandible_textarea').expandingTextArea();
     })
 </script>
+
+<? $current_module->load_extensions("form", "before_eof"); ?>

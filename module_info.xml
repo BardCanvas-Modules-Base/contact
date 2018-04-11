@@ -37,7 +37,7 @@
     
     <extension_areas_info><![CDATA[
         Index: pre-start.
-        Form: presets, extra fields.
+        Form: presets, target override, content_caption_extras, extra fields, before EOF.
         Send email: pre-send, pre-actual-send, post-send.
     ]]></extension_areas_info>
     
