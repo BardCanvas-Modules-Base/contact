@@ -29,5 +29,6 @@ $template->set_page_title($title);
 $template->set("title", $title);
 $template->set("page_tag", "contact_form");
 $template->set("no_right_sidebar", true);
+$template->page_meta_robots = "noindex, nofollow";
 $template->page_contents_include = "form.inc";
 include "{$template->abspath}/main.php";
