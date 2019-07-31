@@ -1,6 +1,10 @@
 
 # Contact Module Change Log
 
+## [2.4.3] - 2019-07-30
+
+- Added robots meta.
+
 ## [2.4.2] - 2018-04-11
 
 - Added extension points.
