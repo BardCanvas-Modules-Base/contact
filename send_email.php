@@ -16,6 +16,9 @@ use hng2_modules\mobile_controller\toolbox;
 
 include "../config.php";
 include "../includes/bootstrap.inc";
+
+if( ! $modules["contact"]->enabled ) throw_fake_404();
+
 session_start();
 
 if( $modules["mobile_controller"]->enabled && ! empty($_REQUEST["bcm_platform"]) )

@@ -13,6 +13,8 @@ use hng2_modules\mobile_controller\toolbox;
 include "../config.php";
 include "../includes/bootstrap.inc";
 
+if( ! $modules["contact"]->enabled ) die("Contact module unavailable.");
+
 if( ! $modules["mobile_controller"]->enabled )
     die(trim($current_module->language->messages->bcm_unavailable));
 

@@ -13,6 +13,8 @@ include "../config.php";
 include "../includes/bootstrap.inc";
 session_start();
 
+if( ! $modules["contact"]->enabled ) throw_fake_404();
+
 $current_module->load_extensions("index", "pre_start");
 
 $accounts_repository = new accounts_repository();
