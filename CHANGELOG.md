@@ -1,6 +1,10 @@
 
 # Contact Module Change Log
 
+## [2.4.4] - 2021-04-20
+
+- Added checks to avoid errors when the module is disabled.
+
 ## [2.4.3] - 2019-07-30
 
 - Added robots meta.
