@@ -189,11 +189,13 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
     
     function prepare_contact_form_submission(data, $form)
     {
-        $form.block(blockUI_default_params);
+        $form.block(blockUI_big_progress_params);
     }
     
     function process_contact_form_submission(response, status, xhr, $form)
     {
+        blockUI_progress_complete();
+        
         if( response.indexOf('OK:') < 0 )
         {
             alert( response );
@@ -220,6 +222,8 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
             target:          '#contact_form_target',
             beforeSerialize: prepare_contact_form_serialization,
             beforeSubmit:    prepare_contact_form_submission,
+            beforeSend:      blockUI_progress_init,
+            uploadProgress:  blockUI_progress_update,
             success:         process_contact_form_submission
         });
         

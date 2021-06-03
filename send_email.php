@@ -143,11 +143,12 @@ $body = replace_escaped_vars(
 );
 
 $config->globals["@contact:proceed_with_send"] = true;
+$config->globals["@contact:attachments"] = array();
 $current_module->load_extensions("send_email", "pre_actual_send");
 
 if( $config->globals["@contact:proceed_with_send"] )
 {
-    $res = send_mail($subject, $body, $recipients, $sender);
+    $res = send_mail($subject, $body, $recipients, $sender, $config->globals["@contact:attachments"]);
     
     if( $res != "OK" ) echo $res;
     else               echo $_REQUEST["stop_on_success"] == "true" ?
