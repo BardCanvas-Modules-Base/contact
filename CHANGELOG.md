@@ -1,6 +1,10 @@
 
 # Contact Module Change Log
 
+## [2.4.5] - 2021-07-05
+
+- Added support for attachments.
+
 ## [2.4.4] - 2021-04-20
 
 - Added checks to avoid errors when the module is disabled.
