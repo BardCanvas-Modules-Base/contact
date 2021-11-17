@@ -1,6 +1,10 @@
 
 # Contact Module Change Log
 
+## [2.4.6] - 2021-11-17
+
+- Added SQL injection check.
+
 ## [2.4.5] - 2021-07-05
 
 - Added support for attachments.
