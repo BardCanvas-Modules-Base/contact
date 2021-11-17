@@ -15,6 +15,18 @@ session_start();
 
 if( ! $modules["contact"]->enabled ) throw_fake_404();
 
+if( ! empty($_REQUEST) )
+{
+    try
+    {
+        check_sql_injection($_REQUEST);
+    }
+    catch(\Exception $e)
+    {
+        throw_fake_501();
+    }
+}
+
 $current_module->load_extensions("index", "pre_start");
 
 $accounts_repository = new accounts_repository();
