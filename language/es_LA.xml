@@ -43,6 +43,13 @@
             ]]></description>
             <type>boolean</type>
         </specs>
+        <specs key="markup_above">
+            <title>Contenido a insertar sobre la forma</title>
+            <description><![CDATA[
+                Usar formato HTML.
+            ]]></description>
+            <type>code</type>
+        </specs>
     </settings_data>
     
     <engine_prefs>

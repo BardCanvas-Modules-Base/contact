@@ -43,6 +43,13 @@
             ]]></description>
             <type>boolean</type>
         </specs>
+        <specs key="markup_above">
+            <title>Markup to insert above the form</title>
+            <description><![CDATA[
+                Specify any HTML code you want to add before the form
+            ]]></description>
+            <type>code</type>
+        </specs>
     </settings_data>
     
     <engine_prefs>

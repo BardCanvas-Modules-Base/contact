@@ -35,7 +35,12 @@ unset( $config->globals["@contact:sender_name"], $config->globals["@contact:send
 
 <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/jquery.exptextarea.js"></script>
 
-<h1><?= $template->get("title") ?></h1>
+<h1 class="contact_standard_h1"><?= $template->get("title") ?></h1>
+
+<?
+$above_markup = $settings->get("modules:contact.markup_above");
+if( ! empty($above_markup) ) echo "<div id='contact_markup_above'>$above_markup</div>\n";
+?>
 
 <? if( count($config->globals["@contact:show_errors"]) > 0 ): ?>
     <div class="framed_content state_ko">
