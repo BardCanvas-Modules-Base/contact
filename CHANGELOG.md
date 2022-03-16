@@ -1,6 +1,10 @@
 
 # Contact Module Change Log
 
+## [2.4.7] - 2022-03-16
+
+- Refactored IP Geolocation functions.
+
 ## [2.4.6] - 2021-11-17
 
 - Added SQL injection check.
