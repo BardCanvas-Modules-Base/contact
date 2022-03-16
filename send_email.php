@@ -85,7 +85,7 @@ $sender     = $account->_exists
             : array( stripslashes($_POST["name"]) => stripslashes($_POST["email"]) );
 
 $ip       = get_user_ip();
-$location = forge_geoip_location( $ip );
+$location = get_geoip_disclosable_location($ip);
 $referer  = $_SERVER["HTTP_REFERER"];
 
 if( ! empty($_POST["target"]) )
